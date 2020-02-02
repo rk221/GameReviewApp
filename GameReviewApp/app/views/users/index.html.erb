@@ -1,0 +1,6 @@
+<h1> ユーザー一覧表示 <h1>
+<% @users.each do |user| %>
+    <%= link_to user.name, user_path(user) %><br>
+<% end %>
+
+<%= link_to "ユーザー登録", new_user_path%>

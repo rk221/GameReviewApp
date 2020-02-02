@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_30_005400) do
+ActiveRecord::Schema.define(version: 2020_01_30_010249) do
 
   create_table "games", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_games_on_name", unique: true
+  end
+
+  create_table "likes_for_user_reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_likes_for_user_reviews_on_game_id"
+    t.index ["user_id"], name: "index_likes_for_user_reviews_on_user_id"
+    t.index [nil, nil], name: "index_likes_for_user_reviews_on_user_and_game", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|
