@@ -4,5 +4,7 @@ ja:
       user:
         name: 名前
         password: パスワード
-        password_confirmation: パスワード（確認用）
+        password_confirmation: パスワード（確認）
         email: Eメール
+        created_at: 登録日時
+        updated_at: 更新日時
