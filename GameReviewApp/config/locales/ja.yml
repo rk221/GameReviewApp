@@ -8,3 +8,8 @@ ja:
         email: Eメール
         created_at: 登録日時
         updated_at: 更新日時
+  activemodel:
+    attributes:
+      session:
+        email: Eメール
+        password: パスワード

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
         if @user.save
             #リダイレクト
-            redirect_to action: 'index'
+            redirect_to sessions_path, notice: '新規ユーザーを登録しました'
         else
             render :new     #登録に失敗した
         end
