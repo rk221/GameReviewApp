@@ -1,8 +1,7 @@
-<h1> ログイン <h1>
-<br>
+<h1> ログイン </h1>
+
 <%= form_with(model: [@loginSession], local: true) do |f| %>
     <%= render 'layouts/error_messages', model: f.object %>
-    <br>
     <%= f.label :email, 'メールアドレス' %>
     <%= f.text_field :email %>
     <br>
