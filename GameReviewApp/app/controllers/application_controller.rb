@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user
-    before_action :login_required
+    helper_method :current_user   #Return Current User Object
+    before_action :login_required #Login only
 
     private
     

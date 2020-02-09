@@ -4,13 +4,15 @@ class SessionsController < ApplicationController
   def new 
     #Already logged in redirect to Home
     redirect_to user_path(current_user) if current_user
+    
     @loginSession = Session.new
   end
 
   def create
+    #LoginUserSearch
     @loginSession = Session.new(session_params)
     user = User.find_by(email: session_params[:email]) 
-
+    #Login Validate and Authenticate
     if @loginSession.save && user&.authenticate(session_params[:password])
       session[:user_id] = user.id
       redirect_to user_path(user.id), notice: 'ログインしました'
