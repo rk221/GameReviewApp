@@ -15,10 +15,22 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
 
         if @user.save
-            #リダイレクト
-            redirect_to sessions_path, notice: '新規ユーザーを登録しました'
+            redirect_to login_path, notice: '新規ユーザーを登録しました。'
         else
             render :new     #登録に失敗した
+        end
+    end
+
+    def edit
+        @user = User.find(params[:id])
+    end
+
+    def update
+        @user = User.find(params[:id])
+        if @user.update(user_params)
+            redirect_to user_path(params[:id]), notice: 'ユーザー情報を更新しました。'
+        else
+            render :edit
         end
     end
 

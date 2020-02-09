@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
-  def new
+  skip_before_action :login_required
+
+  def new 
+    #Already logged in redirect to Home
+    redirect_to user_path(current_user) if current_user
     @loginSession = Session.new
   end
 
@@ -9,10 +13,15 @@ class SessionsController < ApplicationController
 
     if @loginSession.save && user&.authenticate(session_params[:password])
       session[:user_id] = user.id
-      redirect_to users_path, notice: 'ログインしました'
+      redirect_to user_path(user.id), notice: 'ログインしました'
     else
       render :new
     end
+  end
+
+  def destroy
+    reset_session
+    redirect_to login_path, noice: 'ログアウトしました'
   end
 
   private
