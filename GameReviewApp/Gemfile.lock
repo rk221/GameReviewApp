@@ -78,6 +78,11 @@ GEM
     duktape (2.3.0.0)
     erubi (1.9.0)
     execjs (2.7.0)
+    factory_bot (4.11.1)
+      activesupport (>= 3.0.0)
+    factory_bot_rails (4.11.1)
+      factory_bot (~> 4.11.1)
+      railties (>= 3.0.0)
     ffi (1.12.1)
     ffi (1.12.1-x64-mingw32)
     globalid (0.4.2)
@@ -218,6 +223,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   duktape
+  factory_bot_rails (~> 4.11)
   jbuilder (~> 2.5)
   puma (~> 3.11)
   rails (~> 5.2.4)
