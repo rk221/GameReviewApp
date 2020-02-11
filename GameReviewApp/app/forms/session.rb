@@ -11,7 +11,7 @@ class Session
     def true_email_and_password
         user = User.find_by(email: email)
         if user.nil? || !user.authenticate(password)
-            errors[:base] <<("#{Session.human_attribute_name(:email)}もしくは#{Session.human_attribute_name(:password)}が間違っています。")
+            errors[:base] <<("#{Session.human_attribute_name(:email)}もしくは#{Session.human_attribute_name(:password)}が間違っています")
         end
     end
 
