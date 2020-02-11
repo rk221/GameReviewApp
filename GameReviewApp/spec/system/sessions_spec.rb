@@ -6,9 +6,9 @@ describe 'セッション管理機能', type: :system do
     shared_context 'ユーザーがログインする' do 
         before do
             visit login_path                                   #URLにアクセスする
-            fill_in 'メールアドレス', with: login_user.email  #メールアドレスを入力する
-            fill_in 'パスワード', with: login_user.password              #パスワードを入力する
-            click_button 'ログインする'                         #ログインするボタンを押す
+            fill_in "Eメール", with: login_user.email           #Eメールを入力する
+            fill_in 'パスワード', with: login_user.password     #パスワードを入力する
+            click_button 'ログイン'                             #ログインするボタンを押す
         end
     end
     #itの共通化
@@ -66,7 +66,7 @@ describe 'セッション管理機能', type: :system do
             end
 
             it 'ログイン画面へ遷移している' do
-                expect(page).to have_content 'ログイン'
+                expect(page).to have_content 'ログイン画面'
             end
         end
     end
