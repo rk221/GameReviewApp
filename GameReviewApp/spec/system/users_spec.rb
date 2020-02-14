@@ -34,44 +34,55 @@ describe 'ユーザー管理機能', type: :system do
                     expect(page).to have_content 'ログイン画面'
                 end
             end
+            context '入力せず登録する' do
+                context '名前を入力せずに登録する' do
+                    let(:new_user){User.new(email: user_a_data.email, password: user_a_data.password, password_confirmation: user_a_data.password_confirmation)}
+                    include_context 'ユーザー情報を登録画面へ入力する'
+                    it '登録画面で名前を入力していないエラーメッセージが表示されている' do
+                        expect(page).to have_content '名前を入力してください'
+                    end
+                end
 
-            context '名前を入力せずに登録する' do
-                let(:new_user){User.new(email: user_a_data.email, password: user_a_data.password, password_confirmation: user_a_data.password_confirmation)}
-                include_context 'ユーザー情報を登録画面へ入力する'
-                it '登録画面で名前を入力していないエラーメッセージが表示されている' do
-                    expect(page).to have_content '名前を入力してください'
+                context 'Eメールを入力せずに登録する' do
+                    let(:new_user){User.new(name: user_a_data.name, password: user_a_data.password, password_confirmation: user_a_data.password_confirmation)}
+                    include_context 'ユーザー情報を登録画面へ入力する'
+                    it '登録画面でEメールを入力していないエラーメッセージが表示されている' do
+                        expect(page).to have_content 'Eメールを入力してください'
+                    end
+                end
+
+                context 'パスワードを入力せずに登録する' do
+                    let(:new_user){User.new(name: user_a_data.name, email: user_a_data.email, password_confirmation: user_a_data.password_confirmation)}
+                    include_context 'ユーザー情報を登録画面へ入力する'
+                    it '登録画面でパスワードを入力していないエラーメッセージが表示されている' do
+                        expect(page).to have_content 'パスワードを入力してください'
+                    end
+                end
+
+                context 'パスワード（確認）を入力せずに登録する' do
+                    let(:new_user){User.new(name: user_a_data.name, email: user_a_data.email, password: user_a_data.password)}
+                    include_context 'ユーザー情報を登録画面へ入力する'
+                    it '登録画面で入力が一致しないエラーメッセージが表示されている' do
+                        expect(page).to have_content 'パスワード（確認）とパスワードの入力が一致しません'
+                    end
                 end
             end
 
-            context 'Eメールを入力せずに登録する' do
-                let(:new_user){User.new(name: user_a_data.name, password: user_a_data.password, password_confirmation: user_a_data.password_confirmation)}
-                include_context 'ユーザー情報を登録画面へ入力する'
-                it '登録画面でEメールを入力していないエラーメッセージが表示されている' do
-                    expect(page).to have_content 'Eメールを入力してください'
+            context '使用できない値を入力する' do
+                context '不正なEメールを入力して登録する' do
+                    let(:new_user){User.new(name: user_a_data.name, email: 'not@not', password: user_a_data.password, password_confirmation: user_a_data.password_confirmation)}
+                    include_context 'ユーザー情報を登録画面へ入力する'
+                    it '登録画面で不正なEメールの値というエラーメッセージが表示されている' do
+                        expect(page).to have_content 'Eメールは不正な値です'
+                    end
                 end
-            end
 
-            context 'パスワードを入力せずに登録する' do
-                let(:new_user){User.new(name: user_a_data.name, email: user_a_data.email, password_confirmation: user_a_data.password_confirmation)}
-                include_context 'ユーザー情報を登録画面へ入力する'
-                it '登録画面でパスワードを入力していないエラーメッセージが表示されている' do
-                    expect(page).to have_content 'パスワードを入力してください'
-                end
-            end
-
-            context 'パスワード（確認）を入力せずに登録する' do
-                let(:new_user){User.new(name: user_a_data.name, email: user_a_data.email, password: user_a_data.password)}
-                include_context 'ユーザー情報を登録画面へ入力する'
-                it '登録画面で入力が一致しないエラーメッセージが表示されている' do
-                    expect(page).to have_content 'パスワード（確認）とパスワードの入力が一致しません'
-                end
-            end
-
-            context 'パスワードが確認と一致しない場合に登録する' do
-                let(:new_user){User.new(name: user_a_data.name, email: user_a_data.email, password: user_a_data.password, password_confirmation: 'notpassword')}
-                include_context 'ユーザー情報を登録画面へ入力する'
-                it '登録画面で入力が一致しないエラーメッセージが表示されている' do
-                    expect(page).to have_content 'パスワード（確認）とパスワードの入力が一致しません'
+                context 'パスワードが確認と一致しない場合に登録する' do
+                    let(:new_user){User.new(name: user_a_data.name, email: user_a_data.email, password: user_a_data.password, password_confirmation: 'notpassword')}
+                    include_context 'ユーザー情報を登録画面へ入力する'
+                    it '登録画面で入力が一致しないエラーメッセージが表示されている' do
+                        expect(page).to have_content 'パスワード（確認）とパスワードの入力が一致しません'
+                    end
                 end
             end
         end
