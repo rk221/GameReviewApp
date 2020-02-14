@@ -37,7 +37,7 @@ describe 'セッション管理機能', type: :system do
         end
 
         context 'Eメールを入力しないでログイン' do
-            let(:login_user){ User.new(password: 'notpassword') }  #ログインフォームにemailを入力しない
+            let(:login_user){ User.new(password: user_a.password) }  #ログインフォームにemailを入力しない
             include_context 'ユーザーがログインする'
 
             it 'ログイン画面でEメール未入力エラーメッセージが表示されている' do
@@ -46,7 +46,7 @@ describe 'セッション管理機能', type: :system do
         end
 
         context 'パスワードを入力しないでログイン' do
-            let(:login_user){ User.new(email: 'a@example.com') }  #ログインフォームにemailを入力しない
+            let(:login_user){ User.new(email: user_a.email) }  #ログインフォームにパスワードを入力しない
             include_context 'ユーザーがログインする'
 
             it 'ログイン画面でパスワード未入力エラーメッセージが表示されている' do
