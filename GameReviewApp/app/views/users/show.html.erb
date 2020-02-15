@@ -1,0 +1,6 @@
+<h1>ユーザー詳細画面</h1>
+
+<h3> ユーザー情報 </h3>
+<%= @user.name %>
+
+<%= link_to '編集', edit_user_path(@user) %> <%= link_to '削除', user_path(@user), method: :delete %>

@@ -1,0 +1,18 @@
+<h1>ユーザー編集画面</h1>
+
+<%= form_with(model: [@user], local: true) do |f|%>
+    <%= render 'layouts/error_messages', model: f.object %>
+    <%= f.label :name %>
+    <%= f.text_field :name%>
+    <br>
+    <%= f.label :email %>
+    <%= f.email_field :email%>
+    <br>
+    <%= f.label :password%>
+    <%= f.password_field :password%>
+    <br>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation%>
+    <br>
+    <%= f.submit '更新'%>
+<% end %>
