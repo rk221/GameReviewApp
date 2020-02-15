@@ -1,0 +1,13 @@
+<h1> レビュー登録画面 </h1>
+
+<%= form_with(model: [@review], local: true) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+
+    <%= f.label :game_id %>
+    <%= f.collection_select :game_id, Game.all, :id, :name %>
+    <br>
+    <%= f.label :comment %>
+    <%= f.text_field :comment %>
+    <br>
+    <%= f.submit '投稿' %>
+<% end %>
