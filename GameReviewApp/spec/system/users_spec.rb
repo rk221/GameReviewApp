@@ -77,6 +77,38 @@ describe 'ユーザー管理機能', type: :system do
                     end
                 end
 
+                context '想定より長い名前を入力して登録する' do
+                    let(:new_user){User.new(name: 'あいうえおかきくけこさしすせそなにぬねのはひふへほまみむめもや', email: user_a_data.email, password: user_a_data.password, password_confirmation: user_a_data.password_confirmation)}
+                    include_context 'ユーザー情報を登録画面へ入力する'
+                    it '登録画面で名前の長さ超過のエラーメッセージが表示されている' do
+                        expect(page).to have_content '名前は30文字以内で入力してください'
+                    end
+                end
+
+                context '想定より長いEメールを入力して登録する' do
+                    let(:new_user){User.new(name: user_a_data.name, email: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@example.com', password: user_a_data.password, password_confirmation: user_a_data.password_confirmation)}
+                    include_context 'ユーザー情報を登録画面へ入力する'
+                    it '登録画面でEメールの長さ超過のエラーメッセージが表示されている' do
+                        expect(page).to have_content 'Eメールは254文字以内で入力してください'
+                    end
+                end
+
+                context '想定より長いパスワードを入力して登録する' do
+                    let(:new_user){User.new(name: user_a_data.name, email: user_a_data.email, password: '111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111', password_confirmation: '111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111')}
+                    include_context 'ユーザー情報を登録画面へ入力する'
+                    it '登録画面でパスワードの長さ超過のエラーメッセージが表示されている' do
+                        expect(page).to have_content 'パスワードは128文字以内で入力してください'
+                    end
+                end
+
+                context '想定より短いパスワードを入力して登録する' do
+                    let(:new_user){User.new(name: user_a_data.name, email: user_a_data.email, password: '1234567', password_confirmation: '1234567')}
+                    include_context 'ユーザー情報を登録画面へ入力する'
+                    it '登録画面でパスワードの長さ短いエラーメッセージが表示されている' do
+                        expect(page).to have_content 'パスワードは8文字以上で入力してください'
+                    end
+                end
+
                 context 'パスワードが確認と一致しない場合に登録する' do
                     let(:new_user){User.new(name: user_a_data.name, email: user_a_data.email, password: user_a_data.password, password_confirmation: 'notpassword')}
                     include_context 'ユーザー情報を登録画面へ入力する'
