@@ -24,7 +24,12 @@ describe 'セッション管理機能', type: :system do
         context 'ユーザーAでログインする' do
             let(:login_user){ user_a }  #ログインユーザーにユーザーAを指定
             include_context 'ユーザーがログインする'
+
             it_behaves_like 'ログアウトボタンが表示されている'
+
+            it 'ユーザー詳細画面へ遷移している' do
+                expect(page).to have_content 'ユーザー詳細画面'
+            end
         end
 
         context '存在しないユーザーでログイン' do
@@ -67,6 +72,10 @@ describe 'セッション管理機能', type: :system do
 
             it 'ログイン画面へ遷移している' do
                 expect(page).to have_content 'ログイン画面'
+            end
+
+            it 'ログアウトが表示されていない' do
+                expect(page).to_not have_content 'ログアウト'
             end
         end
     end
