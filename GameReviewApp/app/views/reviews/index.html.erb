@@ -1,5 +1,6 @@
 <h1> レビュー一覧画面 </h1>
 <% @reviews.each do |review| %>
+    <%= review.title %>
     <%= review.comment %>
     <br>
 <% end %>
