@@ -3,7 +3,7 @@ require 'rails_helper'
 
 describe 'ユーザー管理機能', type: :system do
     let(:user_a_data){User.new(name: 'ユーザーA', email: 'a@example.com', password: 'password', password_confirmation: 'password')}
-    let(:user_a){ FactoryBot.create(user_a_data)}
+    let(:user_a){ FactoryBot.create(:user, name: user_a_data.name, email: user_a_data.email, password: user_a_data.password)}
 
     describe 'ユーザー登録' do
         before do 
@@ -119,6 +119,47 @@ describe 'ユーザー管理機能', type: :system do
             end
         end
         
+    end
+
+    describe 'ユーザー削除' do
+        let(:login_user){user_a}
+        before do 
+            #ユーザー詳細画面へ遷移させる
+            visit login_path                                   #URLにアクセスする
+            fill_in "Eメール", with: login_user.email           #Eメールを入力する
+            fill_in 'パスワード', with: login_user.password     #パスワードを入力する
+            click_button 'ログイン'                             #ログインするボタンを押す
+        end
+    
+        it 'ユーザー詳細画面へ遷移している' do
+            expect(page).to have_content 'ユーザー詳細画面'
+        end
+
+        context 'ユーザーを削除する' do
+            before do
+                click_link '削除'
+            end
+
+            it 'ログイン画面へ遷移している' do
+                expect(page).to have_content 'ログイン画面'
+            end
+
+            it 'ログアウト表示が消えている' do
+                expect(page).to_not have_content 'ログアウト'
+            end
+
+            context 'ログイン出来るか本当に消えているか試す' do
+                before do                              #URLにアクセスする
+                    fill_in "Eメール", with: login_user.email           #Eメールを入力する
+                    fill_in 'パスワード', with: login_user.password     #パスワードを入力する
+                    click_button 'ログイン'                             #ログインするボタンを押す
+                end
+            
+                it 'ユーザー詳細画面へ遷移していない' do
+                    expect(page).to_not have_content 'ユーザー詳細画面'
+                end
+            end
+        end
     end
 
 end
