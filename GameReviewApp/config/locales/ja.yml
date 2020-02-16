@@ -8,6 +8,11 @@ ja:
         email: Eメール
         created_at: 登録日時
         updated_at: 更新日時
+      review:
+        title: タイトル
+        comment: コメント
+        game_id: ゲーム名
+        user_id: ユーザー名
   activemodel:
     attributes:
       session:
