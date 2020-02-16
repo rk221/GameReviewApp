@@ -6,8 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.create(name: 'admin', email: 'admin@example.com', password: "password")
+
 10.times do |no|
     User.create(name: "テスト用名前#{no}", email: "email#{no}", password_digest: 'aaa')
+    Game.create(name: "テストゲーム#{no}")
 end
 
-Game.create(name: 'テスト')
+Review.create(title: "テストタイトル", comment: "これはテストレビューです", user_id: 1, game_id: 1)
