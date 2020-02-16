@@ -9,3 +9,5 @@
 10.times do |no|
     User.create(name: "テスト用名前#{no}", email: "email#{no}", password_digest: 'aaa')
 end
+
+Game.create(name: 'テスト')

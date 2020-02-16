@@ -30,7 +30,8 @@ ActiveRecord::Schema.define(version: 2020_01_30_010249) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.text "comment", null: false
+    t.string "title", limit: 50, null: false
+    t.text "comment", limit: 200, null: false
     t.integer "user_id"
     t.integer "game_id"
     t.datetime "created_at", null: false
