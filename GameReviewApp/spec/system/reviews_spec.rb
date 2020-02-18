@@ -5,21 +5,21 @@ describe 'レビュー管理機能', type: :system do
     let(:user_a){FactoryBot.create(:user, name: 'ユーザーA', email: 'a@example.com')}
     let(:login_user){user_a}
     before do
-        FactoryBot.create(:game)                            #ゲームを作成
-        visit login_path                                   #URLにアクセスする
-        fill_in "Eメール", with: login_user.email           #Eメールを入力する
-        fill_in 'パスワード', with: login_user.password     #パスワードを入力する
-        click_button 'ログイン'                             #ログインするボタンを押す
+        @game = FactoryBot.create(:game)
+        visit login_path                           
+        fill_in "Eメール", with: login_user.email        
+        fill_in 'パスワード', with: login_user.password   
+        click_button 'ログイン'                 
     end
     #ログインできているか確認
-    it { expect(page).to have_content 'ログアウト'}             #ログアウトが表示されているか確認
+    it { expect(page).to have_content 'ログアウト'}       
 
     describe 'レビュー投稿機能' do
         shared_context 'レビュー内容を入力し投稿' do 
             before do
-                fill_in "タイトル", with: review.title          #タイトルを入力する
-                fill_in 'コメント', with: review.comment        #コメントを入力する
-                click_button '投稿'                         #投稿ボタンを押す
+                fill_in "タイトル", with: review.title     
+                fill_in 'コメント', with: review.comment     
+                click_button '投稿'                  
             end
         end
 
@@ -58,7 +58,7 @@ describe 'レビュー管理機能', type: :system do
 
         context '使用できない値を入力する' do
             context '想定より長いタイトルを入力して投稿を行う' do
-                let(:review){ Review.new(title: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', comment: 'comment')}
+                let(:review){ Review.new(title: 'a' * 51, comment: 'comment')}
                 include_context 'レビュー内容を入力し投稿'
 
                 it 'レビュー投稿画面でタイトルの長さ超過のエラーメッセージが表示されている' do
@@ -67,7 +67,7 @@ describe 'レビュー管理機能', type: :system do
             end
 
             context '想定より長いコメントを入力して投稿を行う' do
-                let(:review){ Review.new(title: 'title', comment: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')}
+                let(:review){ Review.new(title: 'title',  comment: 'a' * 201) }
                 include_context 'レビュー内容を入力し投稿'
 
                 it 'レビュー投稿画面でコメントの長さ超過のエラーメッセージが表示されている' do
@@ -79,13 +79,13 @@ describe 'レビュー管理機能', type: :system do
 
     describe 'レビュー一覧表示機能' do
         before do
-            FactoryBot.create(:review)
+            @review = FactoryBot.create(:review, user_id: user_a.id, game_id: @game.id)
             click_link 'レビュー一覧'
         end
 
         it 'レビューが正しく表示されている' do
-            expect(page).to have_content 'title'
-            expect(page).to have_content 'comment'
+            expect(page).to have_content @review.title
+            expect(page).to have_content @review.comment
         end
     end
 
