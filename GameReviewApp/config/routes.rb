@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :reviews
   resources :games
 
+  post '/like/:review_id' => 'likes_for_user_reviews#create', as: 'like'
+  delete '/like/:review_id' => 'likes_for_user_reviews#destroy', as: 'unlike'
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
