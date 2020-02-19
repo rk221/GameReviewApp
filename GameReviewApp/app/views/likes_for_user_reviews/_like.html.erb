@@ -1,0 +1,9 @@
+    <% if current_user.likes_for_user_reviews.find_by(review_id: review.id) %>
+        <%= link_to unlike_path(review.id), method: :delete, remote: true do %>
+            ♥ <%= LikesForUserReview.where(review_id: review.id).count %>
+        <% end %>
+    <% else %>
+        <%= link_to like_path(review.id), method: :post, remote: true do %>
+            ♡ <%= LikesForUserReview.where(review_id: review.id).count %>
+        <% end %>
+    <% end %>
