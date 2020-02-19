@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :users
   resources :reviews
   resources :games
-
   post '/like/:review_id' => 'likes_for_user_reviews#create', as: 'like'
   delete '/like/:review_id' => 'likes_for_user_reviews#destroy', as: 'unlike'
 
