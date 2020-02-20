@@ -4,7 +4,7 @@ class CreateLikesForUserReviews < ActiveRecord::Migration[5.2]
       t.references :user, foreign_key: true
       t.references :review, foreign_key: true
       t.timestamps
-      t.index [:user, :review], unique: true
+      t.index [:user_id, :review_id], unique: true
     end
   end
 end

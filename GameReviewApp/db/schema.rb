@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 2020_01_30_010249) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["review_id"], name: "index_likes_for_user_reviews_on_review_id"
+    t.index ["user_id", "review_id"], name: "index_likes_for_user_reviews_on_user_id_and_review_id", unique: true
     t.index ["user_id"], name: "index_likes_for_user_reviews_on_user_id"
-    t.index [nil, nil], name: "index_likes_for_user_reviews_on_user_and_review", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|
