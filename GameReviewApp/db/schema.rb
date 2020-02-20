@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(version: 2020_01_30_010249) do
 
   create_table "likes_for_user_reviews", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "game_id"
+    t.integer "review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_likes_for_user_reviews_on_game_id"
+    t.index ["review_id"], name: "index_likes_for_user_reviews_on_review_id"
+    t.index ["user_id", "review_id"], name: "index_likes_for_user_reviews_on_user_id_and_review_id", unique: true
     t.index ["user_id"], name: "index_likes_for_user_reviews_on_user_id"
-    t.index [nil, nil], name: "index_likes_for_user_reviews_on_user_and_game", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|

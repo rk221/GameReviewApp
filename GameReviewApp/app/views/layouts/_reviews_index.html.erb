@@ -1,0 +1,11 @@
+<% reviews.each do |review| %>
+
+    <%= "タイトル #{review.title}" %><br>
+    <%= "ユーザー名 #{User.find(review.user_id).name} " %><br>
+    <%= "コメント #{review.comment}" %><br>
+
+    <div id="likes_buttons_<%= review.id %>">
+        <%= render partial: "likes_for_user_reviews/like", locals: { review: review} %>
+    </div>
+    <br>
+<% end %>
