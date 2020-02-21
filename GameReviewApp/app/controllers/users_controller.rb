@@ -14,9 +14,10 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-        #User Create Validate
+
         if @user.save
-            redirect_to login_path, notice: '新規ユーザーを登録しました。'
+            session[:user_id] = @user.id
+            redirect_to user_path(@user), notice: 'ユーザーを登録しました。'
         else
             render :new     #登録に失敗した
         end
