@@ -21,7 +21,7 @@ module SessionsHelper
         elsif(user_id = cookies.signed[:user_id])                       #クッキーに存在する
             user = User.find_by(id: user_id)
             if user && user.authenticated?(cookies[:remember_token])    #クッキーとダイジェストが一致
-                session[:user_id] = user.id
+                log_in user
                 @current_user = user
             end
         end

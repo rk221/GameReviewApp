@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
     #Login Validate and Authenticate
     if @loginSession.save && user&.authenticate(session_params[:password])
       log_in user
-      remember user
+      remember user if remember_me_params?
       redirect_to user_path(user.id), notice: 'ログインしました'
     else
       render :new
@@ -31,5 +31,9 @@ class SessionsController < ApplicationController
 
   def session_params
     params.require(:session).permit(:email, :password)
+  end
+
+  def remember_me_params?
+    params[:session][:remember_me] == '1'
   end
 end
