@@ -1,13 +1,10 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user   #Return Current User Object
     before_action :login_required #Login only
+    include SessionsHelper
 
     private
     
-    def current_user
-        @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
-    end
-
+    #ログイン中のユーザーが存在しなければログイン画面へ遷移させる
     def login_required
         redirect_to login_path unless current_user
     end

@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
     user = User.find_by(email: session_params[:email]) 
     #Login Validate and Authenticate
     if @loginSession.save && user&.authenticate(session_params[:password])
-      session[:user_id] = user.id
+      log_in user
+      remember user
       redirect_to user_path(user.id), notice: 'ログインしました'
     else
       render :new
@@ -22,7 +23,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    reset_session
+    log_out if logged_in?
     redirect_to login_path, noice: 'ログアウトしました'
   end
 
