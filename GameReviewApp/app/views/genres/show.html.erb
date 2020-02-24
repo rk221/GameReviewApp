@@ -1,0 +1,12 @@
+<h1>ジャンル詳細画面</h1>
+
+<h3> ジャンル情報 </h3>
+<%=  "ジャンル名 #{@genre.name}" %>
+<br>
+<%=  "説明 #{@genre.description}" %>
+<br>
+
+<h3> 投稿レビュー一覧 </h3>
+
+<%= render partial: "layouts/reviews_index", locals: { reviews: Review.where(game_id: @genre.games)} %>
+<br>
