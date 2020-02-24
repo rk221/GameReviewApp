@@ -10,7 +10,9 @@ User.create(name: 'admin', email: 'admin@example.com', password: "password")
 
 10.times do |no|
     User.create(name: "テスト用名前#{no}", email: "email#{no}", password_digest: 'aaa')
-    Game.create(name: "テストゲーム#{no}")
+    genre = Genre.create(name: "テストジャンル#{no}", description: "これはテストジャンルです")
+    Game.create(name: "テストゲーム#{no}", genre_id: genre.id)
 end
+
 
 Review.create(title: "テストタイトル", comment: "これはテストレビューです", user_id: 1, game_id: 1)
