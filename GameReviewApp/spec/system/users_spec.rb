@@ -30,8 +30,8 @@ describe 'ユーザー管理機能', type: :system do
             context 'ユーザーAを登録する' do
                 let(:new_user){user_a_data}
                 include_context 'ユーザー情報を登録画面へ入力する'
-                it '登録が完了してユーザー詳細画面へ遷移している' do
-                    expect(page).to have_content 'ユーザー詳細画面'
+                it '登録が完了してログイン画面へ遷移している' do
+                    expect(page).to have_content 'ログイン画面'
                 end
             end
             context '入力せず登録する' do

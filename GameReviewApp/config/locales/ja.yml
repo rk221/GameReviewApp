@@ -18,3 +18,4 @@ ja:
       session:
         email: Eメール
         password: パスワード
+        remember_me: ログイン情報を記憶する
