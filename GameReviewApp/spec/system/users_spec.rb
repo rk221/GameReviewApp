@@ -162,4 +162,30 @@ describe 'ユーザー管理機能', type: :system do
         end
     end
 
+    describe 'ユーザー詳細' do
+        let(:login_user){user_a}
+        before do 
+            #レビュー作成
+            @game = FactoryBot.create(:game)                   
+            @review = FactoryBot.create(:review, user_id: login_user.id, game_id: @game.id)
+            #ユーザー詳細画面へ遷移させる
+            visit login_path                                   #URLにアクセスする
+            fill_in "Eメール", with: login_user.email           #Eメールを入力する
+            fill_in 'パスワード', with: login_user.password     #パスワードを入力する
+            click_button 'ログイン'                             #ログインするボタンを押す
+        end
+    
+        it 'ユーザー詳細画面へ遷移している' do
+            expect(page).to have_content 'ユーザー詳細画面'
+        end
+
+        it 'レビューが投稿されている' do
+            expect(page).to have_content 'タイトル'
+            expect(page).to have_content 'ユーザー名'
+            expect(page).to have_content 'コメント'
+            expect(page).to have_content @review.title
+            expect(page).to have_content @review.comment
+        end
+    end
+
 end
