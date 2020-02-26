@@ -1,5 +1,6 @@
 <% reviews.each do |review| %>
 
+    <%= "ゲーム名 #{review.game.name}" %><br>
     <%= "タイトル #{review.title}" %><br>
     <%= "ユーザー名 #{User.find(review.user_id).name} " %><br>
     <%= "コメント #{review.comment}" %><br>
