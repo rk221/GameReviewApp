@@ -166,7 +166,8 @@ describe 'ユーザー管理機能', type: :system do
         let(:login_user){user_a}
         before do 
             #レビュー作成
-            @game = FactoryBot.create(:game)                   
+            @genre = FactoryBot.create(:genre)
+            @game = FactoryBot.create(:game, genre_id: @genre.id)                   
             @review = FactoryBot.create(:review, user_id: login_user.id, game_id: @game.id)
             #ユーザー詳細画面へ遷移させる
             visit login_path                                   #URLにアクセスする

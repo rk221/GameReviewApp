@@ -5,7 +5,8 @@ describe 'ゲーム管理機能', type: :system do
     let(:user_a){FactoryBot.create(:user, name: 'ユーザーA', email: 'a@example.com')}
     let(:login_user){user_a}
     before do
-        @game = FactoryBot.create(:game)                   
+        @genre = FactoryBot.create(:genre)
+        @game = FactoryBot.create(:game, genre_id: @genre.id)                   
         @review = FactoryBot.create(:review, user_id: user_a.id, game_id: @game.id)
         visit login_path                           
         fill_in "Eメール", with: login_user.email     
