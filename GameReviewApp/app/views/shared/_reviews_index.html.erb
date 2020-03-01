@@ -3,6 +3,7 @@
     <%= "ゲーム名 #{review.game.name}" %><br>
     <%= "タイトル #{review.title}" %><br>
     <%= "ユーザー名 #{User.find(review.user_id).name} " %><br>
+    <%= "投稿 #{review.convert_elapsed_time}" %>
     <%= "コメント #{review.comment}" %><br>
 
     <div id="likes_buttons_<%= review.id %>">
