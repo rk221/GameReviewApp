@@ -70,3 +70,8 @@ gem 'jquery-rails'
 
 #Decorator
 gem 'active_decorator'
+
+#Upload
+gem 'carrierwave'
+#ImageReSize
+gem 'mini_magick'
