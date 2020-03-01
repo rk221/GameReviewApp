@@ -17,6 +17,7 @@ module GameReviewApp
     # the framework and any gems in your application.
     #rails-i18n
     config.i18n.default_locale = :ja
+    config.time_zone = 'Tokyo'
   end
 end
 

@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <%= render 'layouts/menu_header' if current_user%>
+    <%= render 'shared/menu_header' if current_user%>
     <%= flash[:notice] if flash[:notice] %>
     <%= flash[:alert] if flash[:alert] %>
     <%= yield %>

@@ -3,6 +3,6 @@
 <%= "ゲームタイトル #{@game.name}" %>
 <br>
 
-<%= render partial: "layouts/reviews_index", locals: { reviews: Review.where(game_id: @game.id)} %>
+<%= render partial: "shared/reviews_index", locals: { reviews: Review.where(game_id: @game.id)} %>
 
 <br>

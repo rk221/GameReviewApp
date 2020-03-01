@@ -8,5 +8,5 @@
 
 <h3> 投稿レビュー一覧 </h3>
 
-<%= render partial: "layouts/reviews_index", locals: { reviews: Review.where(game_id: @genre.games)} %>
+<%= render partial: "shared/reviews_index", locals: { reviews: Review.where(game_id: @genre.games)} %>
 <br>
