@@ -159,6 +159,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (1.7.0)
+    rmagick (4.0.0)
     rspec-core (3.9.1)
       rspec-support (~> 3.9.1)
     rspec-expectations (3.9.0)
@@ -244,10 +245,10 @@ DEPENDENCIES
   factory_bot_rails (~> 4.11)
   jbuilder (~> 2.5)
   jquery-rails
-  mini_magick
   puma (~> 3.11)
   rails (~> 5.2.4)
   rails-i18n
+  rmagick
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
   selenium-webdriver

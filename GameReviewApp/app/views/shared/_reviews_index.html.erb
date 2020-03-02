@@ -5,6 +5,7 @@
     <%= "ユーザー名 #{User.find(review.user_id).name} " %><br>
     <%= "投稿 #{review.convert_elapsed_time}" %>
     <%= "コメント #{review.comment}" %><br>
+    <%= image_tag(review.image_url) if review.image.present? %>
 
     <div id="likes_buttons_<%= review.id %>">
         <%= render partial: "likes_for_user_reviews/like", locals: { review: review} %>
