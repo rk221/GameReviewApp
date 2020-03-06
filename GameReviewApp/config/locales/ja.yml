@@ -13,6 +13,11 @@ ja:
         comment: コメント
         game_id: ゲーム名
         user_id: ユーザー名
+        graphic_rate: グラフィック
+        sound_rate: サウンド
+        management_rate: 運営
+        story_rate: ストーリー
+        volume_rate: ボリューム
   activemodel:
     attributes:
       session:

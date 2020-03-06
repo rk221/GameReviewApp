@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_01_130902) do
+ActiveRecord::Schema.define(version: 2020_03_02_072249) do
 
   create_table "games", force: :cascade do |t|
     t.string "name", null: false
@@ -47,6 +47,11 @@ ActiveRecord::Schema.define(version: 2020_03_01_130902) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image"
+    t.integer "graphic_rate", limit: 5, default: 1, null: false
+    t.integer "sound_rate", limit: 5, default: 1, null: false
+    t.integer "management_rate", limit: 5, default: 1, null: false
+    t.integer "story_rate", limit: 5, default: 1, null: false
+    t.integer "volume_rate", limit: 5, default: 1, null: false
     t.index ["game_id"], name: "index_reviews_on_game_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
