@@ -12,6 +12,44 @@
     <%= f.label :comment %>
     <%= f.text_area :comment %>
     <br>
+    
+    <div class ="star" score_name="graphic_rate">
+        <%= f.label :graphic_rate %>
+        <%= f.hidden_field :graphic_rate, id: :review_star%><br>
+    </div>
+
+    <div class ="star" score_name="sound_rate">
+        <%= f.label :sound_rate %>
+        <%= f.hidden_field :sound_rate %><br>
+    </div>
+
+    <div class ="star" score_name="management_rate">
+        <%= f.label :management_rate %>
+        <%= f.hidden_field :management_rate %><br>
+    </div>
+    <div class ="star" score_name="story_rate">
+        <%= f.label :story_rate %>
+        <%= f.hidden_field :story_rate %><br>
+    </div>
+    <div class ="star" score_name="volume_rate">
+        <%= f.label :volume_rate %>
+        <%= f.hidden_field :volume_rate %><br>
+    </div>
+
     <%= f.file_field :image %>
     <%= f.submit '投稿' %>
 <% end %>
+
+<script>
+$(function() {
+    $('.star').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        score: 1,
+        scoreName: function(){
+            return `review[${$(this).attr('score_name')}]`
+        }
+    });
+});
+</script>

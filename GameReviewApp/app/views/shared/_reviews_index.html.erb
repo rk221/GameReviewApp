@@ -3,7 +3,36 @@
     <%= "ゲーム名 #{review.game.name}" %><br>
     <%= "タイトル #{review.title}" %><br>
     <%= "ユーザー名 #{User.find(review.user_id).name} " %><br>
-    <%= "投稿 #{review.convert_elapsed_time}" %>
+    <%= "投稿 #{review.convert_elapsed_time}" %><br>
+    <br>
+    グラフィック
+    <div class="star" data-score="<%= review.graphic_rate %>"></div>
+    サウンド
+    <div class="star" data-score="<%= review.sound_rate %>"></div>
+    運営
+    <div class="star" data-score="<%= review.management_rate %>"></div>
+    ストーリー
+    <div class="star" data-score="<%= review.story_rate %>"></div>
+    ボリューム
+    <div class="star" data-score="<%= review.volume_rate %>"></div>
+
+    </div>
+    <script>
+        $(function() {
+            $('.star').raty({
+                size: 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                readOnly: true,
+                score: function(){
+                    return $(this).attr('data-score');
+                }
+            });
+        });
+    </script>  
+
+
+
     <%= "コメント #{review.comment}" %><br>
     <%= image_tag(review.image_url) if review.image.present? %>
 
