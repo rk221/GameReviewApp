@@ -12,44 +12,67 @@
     <%= f.label :comment %>
     <%= f.text_area :comment %>
     <br>
-    
+
+    <%= f.label :graphic_rate %>
     <div class ="star" score_name="graphic_rate">
-        <%= f.label :graphic_rate %>
-        <%= f.hidden_field :graphic_rate, id: :review_star%><br>
+        <%= f.hidden_field :graphic_rate, id: :review_star%>
     </div>
 
+    <%= f.label :sound_rate %>
     <div class ="star" score_name="sound_rate">
-        <%= f.label :sound_rate %>
-        <%= f.hidden_field :sound_rate %><br>
+        <%= f.hidden_field :sound_rate %>
     </div>
 
+    <%= f.label :management_rate %>
     <div class ="star" score_name="management_rate">
-        <%= f.label :management_rate %>
-        <%= f.hidden_field :management_rate %><br>
-    </div>
-    <div class ="star" score_name="story_rate">
-        <%= f.label :story_rate %>
-        <%= f.hidden_field :story_rate %><br>
-    </div>
-    <div class ="star" score_name="volume_rate">
-        <%= f.label :volume_rate %>
-        <%= f.hidden_field :volume_rate %><br>
+        <%= f.hidden_field :management_rate %>
     </div>
 
-    <%= f.file_field :image %>
+    <%= f.label :story_rate %>
+    <div class ="star" score_name="story_rate">
+        <%= f.hidden_field :story_rate %>
+    </div>
+
+    <%= f.label :volume_rate %>
+    <div class ="star" score_name="volume_rate">
+        <%= f.hidden_field :volume_rate %>
+    </div>
+
+    <%= f.file_field :image, id: :review_image %>
+    <img id = "image_prev" width = "400" >
+    <br>
     <%= f.submit '投稿' %>
 <% end %>
 
-<script>
-$(function() {
+<script type="text/javascript">
+
+
+$(document).on('turbolinks:load', function() {
     $('.star').raty({
-        size: 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        score: 1,
-        scoreName: function(){
-            return `review[${$(this).attr('score_name')}]`
-        }
+    size: 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    score: 1,
+    scoreName: function(){
+        return `review[${$(this).attr('score_name')}]`
+    }
     });
+});
+
+
+$(function() {
+ function readURL(input) {
+   if (input.files && input.files[0]) {
+     var reader = new FileReader();
+     reader.onload = function (e) {
+       $('#image_prev').attr('src', e.target.result);
+       console.log($('#image_prev').html());
+     }
+     reader.readAsDataURL(input.files[0]);
+   }
+ }
+ $("#review_image").change(function(){
+   readURL(this);
+ });
 });
 </script>
