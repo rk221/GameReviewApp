@@ -23,4 +23,12 @@ module ReviewDecorator
     def calc_second_to_minute(second)
         return (second / 60).floor
     end
+
+    def total_play_time
+        total_play_time = read_attribute(:total_hours_played)
+        
+        return "#{total_play_time}時間未満" if total_play_time == 1
+        return "#{total_play_time}時間以上" if total_play_time == 9999
+        return "#{total_play_time}時間"
+    end
 end
