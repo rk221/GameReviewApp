@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_02_072249) do
+ActiveRecord::Schema.define(version: 2020_03_07_085444) do
 
   create_table "games", force: :cascade do |t|
     t.string "name", null: false
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 2020_03_02_072249) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "remember_digest"
+    t.string "nickname", limit: 30, default: "名無しさん", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
