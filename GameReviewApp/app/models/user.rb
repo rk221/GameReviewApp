@@ -4,6 +4,7 @@ class User < ApplicationRecord
     has_many :likes_for_user_reviews
 
     validates :name, presence: true, length: {maximum: 30}
+    validates :nickname, presence: true, length: {minimum:4, maximum: 30}
 
     #email validates
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
