@@ -14,6 +14,7 @@ ja:
         comment: コメント
         game_id: ゲーム名
         user_id: ユーザー名
+        total_hours_played: 総プレイ時間
         graphic_rate: グラフィック
         sound_rate: サウンド
         management_rate: 運営
