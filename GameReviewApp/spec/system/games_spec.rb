@@ -2,7 +2,7 @@ require 'rails_helper'
 
 
 describe 'ゲーム管理機能', type: :system do
-    let(:user_a){FactoryBot.create(:user, name: 'ユーザーA', email: 'a@example.com')}
+    let(:user_a){FactoryBot.create(:user, name: 'ユーザーA', nickname: 'ユーザーA', email: 'a@example.com')}
     let(:login_user){user_a}
     before do
         @genre = FactoryBot.create(:genre)

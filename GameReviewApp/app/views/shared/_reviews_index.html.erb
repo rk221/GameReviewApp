@@ -2,7 +2,7 @@
 
     <%= "ゲーム名 #{review.game.name}" %><br>
     <%= "タイトル #{review.title}" %><br>
-    <%= "ユーザー名 #{User.find(review.user_id).name} " %><br>
+    <%= "ユーザー名 #{User.find(review.user_id).nickname} " %><br>
     <%= "投稿 #{review.convert_elapsed_time}" %><br>
     <br>
     グラフィック
