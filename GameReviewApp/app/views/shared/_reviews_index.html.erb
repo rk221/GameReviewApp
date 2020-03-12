@@ -1,10 +1,10 @@
 <% reviews.each do |review| %>
 
-    <%= "ゲーム名 #{review.game.name}" %><br>
-    <%= "タイトル #{review.title}" %><br>
-    <%= "ユーザー名 #{User.find(review.user_id).nickname} " %><br>
+    <%= "#{Review.human_attribute_name(:game_id)} #{review.game.name}" %><br>
+    <%= "#{Review.human_attribute_name(:title)} #{review.title}" %><br>
+    <%= "#{Review.human_attribute_name(:user_id)} #{User.find(review.user_id).nickname} " %><br>
     <%= "投稿 #{review.convert_elapsed_time}" %><br>
-    <%= "総プレイ時間 #{review.total_play_time}" %><br>
+    <%= "#{Review.human_attribute_name(:total_hours_played)} #{review.total_play_time}" %><br>
     <br>
     グラフィック
     <div class="star" data-score="<%= review.graphic_rate %>"></div>
@@ -34,7 +34,7 @@
 
 
 
-    <%= "コメント #{review.comment}" %><br>
+    <%= "#{Review.human_attribute_name(:comment)} #{review.comment}" %><br>
     <%= image_tag(review.image_url) if review.image.present? %>
 
     <div id="likes_buttons_<%= review.id %>">
