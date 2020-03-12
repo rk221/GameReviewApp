@@ -70,8 +70,25 @@ describe 'レビュー管理機能', type: :system do
         end
 
         context '使用できない値を入力する' do
+            context '想定より長いタイトルを入力して投稿を行う' do
+                let(:review){ Review.new(title: 'a' * 51, comment: 'comment', total_hours_played: 5)}
+                include_context 'レビュー内容を入力し投稿'
+
+                it '入力制限で50文字で投稿されている' do
+                    expect(page).to have_content 'a'*50
+                end
+            end
+
+            context '想定より長いコメントを入力して投稿を行う' do
+                let(:review){ Review.new(title: 'title',  comment: 'a' * 201, total_hours_played: 5) }
+                include_context 'レビュー内容を入力し投稿'
+
+                it '入力制限で200文字で投稿されている' do
+                    expect(page).to have_content 'a'*200
+                end
+            end
             context '総プレイ時間に0を入力して投稿を行う' do
-                let(:review){ Review.new(title: 'title',  comment: 'a' * 201, total_hours_played: 0) }
+                let(:review){ Review.new(title: 'title',  comment: 'comment', total_hours_played: 0) }
                 include_context 'レビュー内容を入力し投稿'
 
                 it 'レビュー投稿画面から移動していない' do
