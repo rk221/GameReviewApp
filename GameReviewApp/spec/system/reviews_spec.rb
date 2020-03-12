@@ -70,23 +70,6 @@ describe 'レビュー管理機能', type: :system do
         end
 
         context '使用できない値を入力する' do
-            context '想定より長いタイトルを入力して投稿を行う' do
-                let(:review){ Review.new(title: 'a' * 51, comment: 'comment', total_hours_played: 5)}
-                include_context 'レビュー内容を入力し投稿'
-
-                it 'レビュー投稿画面でタイトルの長さ超過のエラーメッセージが表示されている' do
-                    expect(page).to have_content 'タイトルは50文字以内で入力してください'
-                end
-            end
-
-            context '想定より長いコメントを入力して投稿を行う' do
-                let(:review){ Review.new(title: 'title',  comment: 'a' * 201, total_hours_played: 5) }
-                include_context 'レビュー内容を入力し投稿'
-
-                it 'レビュー投稿画面でコメントの長さ超過のエラーメッセージが表示されている' do
-                    expect(page).to have_content 'コメントは200文字以内で入力してください'
-                end
-            end
             context '総プレイ時間に0を入力して投稿を行う' do
                 let(:review){ Review.new(title: 'title',  comment: 'a' * 201, total_hours_played: 0) }
                 include_context 'レビュー内容を入力し投稿'
