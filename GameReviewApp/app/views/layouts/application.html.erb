@@ -9,10 +9,16 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
   <body>
-    <%= render 'shared/menu_header' if current_user%>
-    <%= flash[:notice] if flash[:notice] %>
-    <%= flash[:alert] if flash[:alert] %>
-    <%= yield %>
+    <nav>
+      <%= render 'shared/menu_header' if current_user%>
+    </nav>
+
+    <main>
+      <%= flash[:notice] if flash[:notice] %>
+      <%= flash[:alert] if flash[:alert] %>
+      <%= yield %>
+    </main>
   </body>
 </html>
