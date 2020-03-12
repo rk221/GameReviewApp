@@ -1,9 +1,8 @@
-<%= link_to 'ログアウト', logout_path, method: :delete %>
-<br>
-<%= link_to 'レビュー投稿', new_review_path %>
-<%= link_to 'レビュー一覧', reviews_path %>
-<%= link_to 'ゲーム一覧', games_path %>
-<%= link_to 'ジャンル一覧', genres_path %>
-<%= link_to 'マイページ', user_path(current_user) %>
-
-<br>
+<ul class="navbar">
+    <li><%= link_to 'レビュー投稿', new_review_path %></li>
+    <li><%= link_to 'レビュー一覧', reviews_path %></li>
+    <li><%= link_to 'ゲーム一覧', games_path %></li>
+    <li><%= link_to 'ジャンル一覧', genres_path %></li>
+    <li><%= link_to 'マイページ', user_path(current_user) %></li>
+    <li><%= link_to 'ログアウト', logout_path, method: :delete %></li>
+</ul>
