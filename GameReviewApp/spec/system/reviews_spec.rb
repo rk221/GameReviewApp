@@ -20,6 +20,7 @@ describe 'レビュー管理機能', type: :system do
             before do
                 fill_in "タイトル", with: review.title     
                 fill_in 'コメント', with: review.comment     
+                fill_in '総プレイ時間', with: review.total_hours_played
                 click_button '投稿'                  
             end
         end
@@ -29,17 +30,19 @@ describe 'レビュー管理機能', type: :system do
         end
 
         context 'レビュー投稿を行う' do
-            let(:review){ Review.new(title: 'title', comment: 'comment')}
+            let(:review){ Review.new(title: 'title', comment: 'comment', total_hours_played: 5)}
             include_context 'レビュー内容を入力し投稿'
 
             it '正常に投稿されている' do
                 expect(page).to have_content 'title'
                 expect(page).to have_content 'comment'
+                expect(page).to have_content '5'
+                expect(page).to have_content '総プレイ時間'
             end
         end
         context '入力せずに登録する' do
             context 'タイトルを入力せずに投稿を行う' do
-                let(:review){ Review.new(title: '', comment: 'comment')}
+                let(:review){ Review.new(title: '', comment: 'comment', total_hours_played: 5)}
                 include_context 'レビュー内容を入力し投稿'
 
                 it 'レビュー投稿画面でタイトル未入力エラーメッセージが表示されている' do
@@ -48,18 +51,27 @@ describe 'レビュー管理機能', type: :system do
             end
 
             context 'コメントを入力せずに投稿を行う' do
-                let(:review){ Review.new(title: 'title', comment: '')}
+                let(:review){ Review.new(title: 'title', comment: '', total_hours_played: 5)}
                 include_context 'レビュー内容を入力し投稿'
 
                 it 'レビュー投稿画面でコメント未入力エラーメッセージが表示されている' do
                     expect(page).to have_content 'コメントを入力してください'
                 end
             end
+            
+            context '総プレイ時間を入力せずに投稿を行う' do
+                let(:review){ Review.new(title: 'title', comment: 'comment', total_hours_played: '')}
+                include_context 'レビュー内容を入力し投稿'
+
+                it 'レビュー投稿画面でコメント未入力エラーメッセージが表示されている' do
+                    expect(page).to have_content '総プレイ時間を入力してください'
+                end
+            end
         end
 
         context '使用できない値を入力する' do
             context '想定より長いタイトルを入力して投稿を行う' do
-                let(:review){ Review.new(title: 'a' * 51, comment: 'comment')}
+                let(:review){ Review.new(title: 'a' * 51, comment: 'comment', total_hours_played: 5)}
                 include_context 'レビュー内容を入力し投稿'
 
                 it 'レビュー投稿画面でタイトルの長さ超過のエラーメッセージが表示されている' do
@@ -68,11 +80,19 @@ describe 'レビュー管理機能', type: :system do
             end
 
             context '想定より長いコメントを入力して投稿を行う' do
-                let(:review){ Review.new(title: 'title',  comment: 'a' * 201) }
+                let(:review){ Review.new(title: 'title',  comment: 'a' * 201, total_hours_played: 5) }
                 include_context 'レビュー内容を入力し投稿'
 
                 it 'レビュー投稿画面でコメントの長さ超過のエラーメッセージが表示されている' do
                     expect(page).to have_content 'コメントは200文字以内で入力してください'
+                end
+            end
+            context '総プレイ時間に0を入力して投稿を行う' do
+                let(:review){ Review.new(title: 'title',  comment: 'a' * 201, total_hours_played: 0) }
+                include_context 'レビュー内容を入力し投稿'
+
+                it 'レビュー投稿画面から移動していない' do
+                    expect(page).to have_content 'レビュー登録画面'
                 end
             end
         end
