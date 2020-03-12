@@ -1,9 +1,9 @@
 <h1>ジャンル詳細画面</h1>
 
 <h3> ジャンル情報 </h3>
-<%=  "ジャンル名 #{@genre.name}" %>
+<%=  "#{Genre.human_attribute_name(:name)} #{@genre.name}" %>
 <br>
-<%=  "説明 #{@genre.description}" %>
+<%=  "#{Genre.human_attribute_name(:description)} #{@genre.description}" %>
 <br>
 
 <h3> 投稿レビュー一覧 </h3>

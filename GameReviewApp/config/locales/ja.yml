@@ -20,6 +20,11 @@ ja:
         management_rate: 運営
         story_rate: ストーリー
         volume_rate: ボリューム
+      genre:
+        name: ジャンル名
+        description: 説明
+      game:
+        name: ゲーム名
   activemodel:
     attributes:
       session:
