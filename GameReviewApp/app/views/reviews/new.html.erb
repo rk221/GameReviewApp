@@ -7,10 +7,10 @@
     <%= f.collection_select :game_id, Game.all, :id, :name %>
     <br>
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, maxlength: 50 %>
     <br>
     <%= f.label :comment %>
-    <%= f.text_area :comment %>
+    <%= f.text_area :comment, maxlength: 200%>
     <br>
     <%= f.label :total_hours_played %>
     <%= f.number_field :total_hours_played, min: 1, max: 9999 %>
