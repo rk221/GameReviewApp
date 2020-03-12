@@ -4,6 +4,7 @@
     <%= "タイトル #{review.title}" %><br>
     <%= "ユーザー名 #{User.find(review.user_id).nickname} " %><br>
     <%= "投稿 #{review.convert_elapsed_time}" %><br>
+    <%= "総プレイ時間 #{review.total_play_time}" %><br>
     <br>
     グラフィック
     <div class="star" data-score="<%= review.graphic_rate %>"></div>
