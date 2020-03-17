@@ -1,3 +1,22 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#name_menu{
+    display: block;
+    width: 50%;
+    margin: 5px 0px; 
+}
+
+#password_menu{
+    display: block;
+    width: 50%;
+    margin: 5px 0px;
+}
+
+#name_form{
+    display: none;
+}
+#password_form{
+    display: none;
+}

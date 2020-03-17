@@ -206,4 +206,54 @@ describe 'ユーザー管理機能', type: :system do
         end
     end
 
+    describe 'ユーザー編集' do
+        let(:login_user){user_a}
+        before do 
+            #レビュー作成
+            @genre = FactoryBot.create(:genre)
+            @game = FactoryBot.create(:game, genre_id: @genre.id)                   
+            @review = FactoryBot.create(:review, user_id: login_user.id, game_id: @game.id)
+            #ユーザー詳細画面へ遷移させる
+            visit login_path                                   #URLにアクセスする
+            fill_in "Eメール", with: login_user.email           #Eメールを入力する
+            fill_in 'パスワード', with: login_user.password     #パスワードを入力する
+            click_button 'ログイン'                             #ログインするボタンを押す
+        end
+    
+        it 'ユーザー詳細画面へ遷移している' do
+            expect(page).to have_content 'ユーザー詳細画面'
+        end
+
+        context 'ユーザー編集' do
+            before do
+                click_link '編集'
+            end
+
+            it 'ユーザー編集画面に遷移している' do 
+                expect(page).to have_content 'ユーザー編集画面'
+            end
+
+            context 'ユーザー編集を確認する' do
+                let(:update_user){User.new(name: '更新後ユーザー本名', nickname: '更新後ニックネーム', email: 'update@example.com', password: 'updatepassword', password_confirmation: 'updatepassword')}
+                before do
+                    fill_in "ニックネーム",	with: update_user.nickname
+                    fill_in "Eメール", with: update_user.email
+
+
+                    find("#name_menu").click
+                    fill_in "氏名", with: update_user.name 
+                    find("#password_menu").click
+                    fill_in "パスワード", with: update_user.password
+                    fill_in "パスワード（確認）", with: update_user.password_confirmation
+                    click_button "更新"
+                end
+
+                it "更新されている" do
+                    expect(page).to have_content 'ユーザー情報を更新しました。'
+                    expect(page).to have_content update_user.nickname
+                end
+            end
+        end        
+    end
+
 end

@@ -28,6 +28,9 @@ class UsersController < ApplicationController
 
     def update
         @user = User.find(params[:id])
+
+        return if current_user != @user
+        
         #User Update Validate
         if @user.update(user_params)
             redirect_to user_path(params[:id]), notice: 'ユーザー情報を更新しました。'

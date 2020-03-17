@@ -2,20 +2,40 @@
 
 <%= form_with(model: [@user], local: true) do |f|%>
     <%= render 'shared/error_messages', model: f.object %>
-    <%= f.label :name %>
-    <%= f.text_field :name%>
-    <br>
+
     <%= f.label :nickname %>
     <%= f.text_field :nickname %>
     <br>
+
     <%= f.label :email %>
     <%= f.email_field :email%>
     <br>
-    <%= f.label :password%>
-    <%= f.password_field :password%>
-    <br>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation%>
-    <br>
+    <button type="button" name="氏名の編集" id="name_menu">氏名の編集</button>
+    <div id="name_form">
+        <%= f.label :name %>
+        <%= f.text_field :name%>
+        <br>
+    </div>
+
+    <button type="button" name="パスワードの変更" id="password_menu">パスワードの変更</button>
+    <div id="password_form">
+        <%= f.label :password %> 
+        <%= f.password_field :password%>
+        <br>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation%>
+        <br>
+    </div>
     <%= f.submit '更新'%>
 <% end %>
+
+<script>
+$('#name_menu').on('click',function(){
+    $('#name_form').toggle();
+});
+
+$('#password_menu').on('click',function(){
+    $('#password_form').toggle();
+});
+
+</script>
