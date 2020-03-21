@@ -1,7 +1,7 @@
 class Review < ApplicationRecord
     belongs_to :user
     belongs_to :game
-    has_many :reviews
+    has_many :likes_for_user_reviews, dependent: :destroy
 
     validates :title, presence: true, length: {maximum: 50}
     validates :comment, presence: true, length: {maximum: 200}
