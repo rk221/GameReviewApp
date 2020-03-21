@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :users do
     post :confirm, action: :confirm_new, on: :new
+    match :confirm, action: :confirm_edit, on: :member, via: [:patch, :put]
   end
   
   post '/like/:review_id' => 'likes_for_user_reviews#create', as: 'like'
