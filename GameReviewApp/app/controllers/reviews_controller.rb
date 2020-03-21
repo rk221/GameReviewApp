@@ -16,6 +16,12 @@ class ReviewsController < ApplicationController
             render :new
         end
     end
+
+    def destroy
+        review = Review.find(params[:id])
+        review.destroy 
+        redirect_back(fallback_location: root_path)
+    end
     
     private
 

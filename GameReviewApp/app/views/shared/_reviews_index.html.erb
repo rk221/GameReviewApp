@@ -32,7 +32,11 @@
         });
     </script>  
 
-
+    <% if review.user_id == current_user.id %>
+    <%= link_to "削除", review, method: :delete, data: { confirm: "削除します。よろしいですか？"} %>
+    <% else %>
+    <% end %>
+    <br>
 
     <%= "#{Review.human_attribute_name(:comment)} #{review.comment}" %><br>
     <%= image_tag(review.image_url) if review.image.present? %>
