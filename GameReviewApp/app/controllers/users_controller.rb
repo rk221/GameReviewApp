@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :login_required, only: [:new, :create]
+    skip_before_action :login_required, only: [:new, :create, :confirm_new]
     def index #UserIndex View only by administrator in the future
         @users = User.all
     end
@@ -14,6 +14,11 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
+
+        if params[:back].present?
+            render :new
+            return
+        end
 
         if @user.save
             redirect_to login_path, notice: 'ユーザーを登録しました。'
@@ -45,6 +50,11 @@ class UsersController < ApplicationController
 
         reset_session                   #Session Delete
         redirect_to login_path, noice: 'ユーザーデータを削除しました'
+    end
+
+    def confirm_new
+        @user = User.new(user_params)
+        render :new unless @user.valid?
     end
 
     private
