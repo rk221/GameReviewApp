@@ -110,4 +110,27 @@ describe 'レビュー管理機能', type: :system do
         end
     end
 
+    describe 'レビュー削除機能' do
+        before do
+            @review = FactoryBot.create(:review, comment: "削除用レビュー", user_id: user_a.id, game_id: @game.id)
+            click_link 'レビュー一覧'
+        end
+
+        it 'レビューが正しく表示されている' do
+            expect(page).to have_content @review.title
+            expect(page).to have_content @review.comment
+        end
+
+        context 'レビューを削除する' do
+            before do
+                click_link '削除'
+                page.driver.browser.switch_to.alert.accept #ダイアログOKクリック
+            end
+
+            it 'レビューが削除されている' do
+                expect(page).to_not have_content @review.title
+                expect(page).to_not have_content @review.comment
+            end
+        end
+    end
 end
