@@ -73,3 +73,6 @@ gem 'active_decorator'
 
 #Upload
 gem 'carrierwave'
+
+#pankuzulist
+gem 'gretel'

@@ -16,6 +16,7 @@
     </nav>
 
     <main>
+      <%= breadcrumbs pretext: "パンくずリスト: ", separator: " &rsaquo; " %>
       <%= flash[:notice] if flash[:notice] %>
       <%= flash[:alert] if flash[:alert] %>
       <%= yield %>
