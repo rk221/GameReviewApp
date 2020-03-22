@@ -31,6 +31,9 @@ describe 'ユーザー管理機能', type: :system do
             context 'ユーザーAを登録する' do
                 let(:new_user){user_a_data}
                 include_context 'ユーザー情報を登録画面へ入力する'
+                before do
+                    find('#confirm').click
+                end
                 it '登録が完了してログイン画面へ遷移している' do
                     expect(page).to have_content 'ログイン画面'
                 end
@@ -81,6 +84,9 @@ describe 'ユーザー管理機能', type: :system do
                 context '想定より長い氏名を入力して登録する' do
                     let(:new_user){User.new(name: 'a' * 31, nickname: user_a_data.nickname, email: user_a_data.email, password: user_a_data.password, password_confirmation: user_a_data.password_confirmation)}
                     include_context 'ユーザー情報を登録画面へ入力する'
+                    before do
+                        find('#confirm').click
+                    end
                     it '30文字で登録されている' do
                         expect(page).to have_content 'ログイン画面'
                     end
@@ -89,6 +95,9 @@ describe 'ユーザー管理機能', type: :system do
                 context '想定より長いニックネームを入力して登録する' do
                     let(:new_user){User.new(name: user_a_data.name, nickname: 'a' * 31, email: user_a_data.email, password: user_a_data.password, password_confirmation: user_a_data.password_confirmation)}
                     include_context 'ユーザー情報を登録画面へ入力する'
+                    before do
+                        find('#confirm').click
+                    end
                     it '30文字で登録されている' do
                         expect(page).to have_content 'ログイン画面'
                     end
@@ -105,6 +114,9 @@ describe 'ユーザー管理機能', type: :system do
                 context '想定より長いEメールを入力して登録する' do
                     let(:new_user){User.new(name: user_a_data.name, nickname: user_a_data.nickname, email: 'a' * 243 + '@example.com', password: user_a_data.password, password_confirmation: user_a_data.password_confirmation)}
                     include_context 'ユーザー情報を登録画面へ入力する'
+                    before do
+                        find('#confirm').click
+                    end
                     it '登録されている' do
                         expect(page).to have_content 'ログイン画面'
                     end
@@ -246,6 +258,7 @@ describe 'ユーザー管理機能', type: :system do
                     fill_in "パスワード", with: update_user.password
                     fill_in "パスワード（確認）", with: update_user.password_confirmation
                     click_button "更新"
+                    find('#confirm').click
                 end
 
                 it "更新されている" do
