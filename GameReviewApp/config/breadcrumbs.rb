@@ -34,11 +34,6 @@ crumb :reviews do
   link "レビュー一覧", reviews_path
 end
 
-crumb :review do
-  link "レビュー詳細", review_path
-  parent :reviews
-end
-
 crumb :new_review do
   link "レビュー投稿", new_review_path
   parent :reviews
