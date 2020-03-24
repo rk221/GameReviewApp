@@ -7,20 +7,20 @@
     <%= "#{Review.human_attribute_name(:total_hours_played)} #{review.total_play_time}" %><br>
     <br>
     グラフィック
-    <div class="star" data-score="<%= review.graphic_rate %>"></div>
+    <div class="show_star_raty" data-score="<%= review.graphic_rate %>"></div>
     サウンド
-    <div class="star" data-score="<%= review.sound_rate %>"></div>
+    <div class="show_star_raty" data-score="<%= review.sound_rate %>"></div>
     運営
-    <div class="star" data-score="<%= review.management_rate %>"></div>
+    <div class="show_star_raty" data-score="<%= review.management_rate %>"></div>
     ストーリー
-    <div class="star" data-score="<%= review.story_rate %>"></div>
+    <div class="show_star_raty" data-score="<%= review.story_rate %>"></div>
     ボリューム
-    <div class="star" data-score="<%= review.volume_rate %>"></div>
+    <div class="show_star_raty" data-score="<%= review.volume_rate %>"></div>
 
     </div>
     <script>
         $(function() {
-            $('.star').raty({
+            $('.show_star_raty').raty({
                 size: 36,
                 starOff:  '<%= asset_path('star-off.png') %>',
                 starOn : '<%= asset_path('star-on.png') %>',

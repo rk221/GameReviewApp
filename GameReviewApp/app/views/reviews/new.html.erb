@@ -17,27 +17,27 @@
     <%= f.number_field :total_hours_played, min: 1, max: 9999 %>
     <br>
     <%= f.label :graphic_rate %>
-    <div class ="star" score_name="graphic_rate">
+    <div class ="input_star_raty" score_name="graphic_rate">
         <%= f.hidden_field :graphic_rate, id: :review_star%>
     </div>
 
     <%= f.label :sound_rate %>
-    <div class ="star" score_name="sound_rate">
+    <div class ="input_star_raty" score_name="sound_rate">
         <%= f.hidden_field :sound_rate %>
     </div>
 
     <%= f.label :management_rate %>
-    <div class ="star" score_name="management_rate">
+    <div class ="input_star_raty" score_name="management_rate">
         <%= f.hidden_field :management_rate %>
     </div>
 
     <%= f.label :story_rate %>
-    <div class ="star" score_name="story_rate">
+    <div class ="input_star_raty" score_name="story_rate">
         <%= f.hidden_field :story_rate %>
     </div>
 
     <%= f.label :volume_rate %>
-    <div class ="star" score_name="volume_rate">
+    <div class ="input_star_raty" score_name="volume_rate">
         <%= f.hidden_field :volume_rate %>
     </div>
 
@@ -45,12 +45,12 @@
     <br>
     <img id = "image_prev" width = "400" >
     <br>
-    <%= f.submit '投稿' %>
+    <%= f.submit '投稿', class: 'btn btn-primary' %>
 <% end %>
 
 <script type="text/javascript">
   $(document).on('turbolinks:load', function() {
-      $('.star').raty({
+      $('.input_star_raty').raty({
       size: 36,
       starOff:  '<%= asset_path('star-off.png') %>',
       starOn : '<%= asset_path('star-on.png') %>',
