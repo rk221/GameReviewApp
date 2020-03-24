@@ -1,4 +1,4 @@
-<% breadcrumb :new_review %>
+<% breadcrumb :review %>
 <h1> レビュー登録画面 </h1>
 
 <%= form_with(model: [@review], local: true) do |f| %>
@@ -49,34 +49,15 @@
 <% end %>
 
 <script type="text/javascript">
-
-
-$(document).on('turbolinks:load', function() {
-    $('.star').raty({
-    size: 36,
-    starOff:  '<%= asset_path('star-off.png') %>',
-    starOn : '<%= asset_path('star-on.png') %>',
-    score: 1,
-    scoreName: function(){
-        return `review[${$(this).attr('score_name')}]`
-    }
-    });
-});
-
-
-$(function() {
- function readURL(input) {
-   if (input.files && input.files[0]) {
-     var reader = new FileReader();
-     reader.onload = function (e) {
-       $('#image_prev').attr('src', e.target.result);
-       console.log($('#image_prev').html());
-     }
-     reader.readAsDataURL(input.files[0]);
-   }
- }
- $("#review_image").change(function(){
-   readURL(this);
- });
-});
+  $(document).on('turbolinks:load', function() {
+      $('.star').raty({
+      size: 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      score: 1,
+      scoreName: function(){
+          return `review[${$(this).attr('score_name')}]`
+      }
+      });
+  });
 </script>
