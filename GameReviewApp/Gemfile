@@ -76,3 +76,6 @@ gem 'carrierwave'
 
 #pankuzulist
 gem 'gretel'
+
+#bootstrap
+gem 'bootstrap'
