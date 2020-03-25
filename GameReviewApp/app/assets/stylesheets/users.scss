@@ -2,21 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#name_menu{
-    display: block;
-    width: 30%;
-    margin: 5px 0px; 
-}
-
-#password_menu{
-    display: block;
-    width: 30%;
-    margin: 5px 0px;
-}
-
-#name_form{
-    display: none;
-}
-#password_form{
+.toggle_target{
     display: none;
 }
