@@ -1,9 +1,19 @@
 <% breadcrumb :genres %>
 <h1> ジャンル一覧画面 </h1>
 
-<% @genres.each do |genre| %>
-
-    <%= link_to genre.name, genre_path(genre) %>
-    <br>
-
-<% end %>
+<table class="table table-hover table-bordered">
+    <thead class="thead-default">
+        <tr>
+           <th><%= Genre.human_attribute_name(:name) %></th>
+           <th>レビュー数</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @genres.each do |genre| %>
+            <tr>
+                <td><%= link_to genre.name, genre_path(genre) %></td>
+                <td><%= "#{Review.where(game_id: Game.where(genre_id: genre.id).ids).count}個のレビュー" %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
