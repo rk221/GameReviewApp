@@ -1,7 +1,7 @@
 <% breadcrumb :new_user %>
 <h1 class="mb-5"> ユーザー登録画面 </h1>
 
-<%= link_to "ログイン画面へ戻る", login_path %>
+
 
 <%= form_with model: @user, local: true, url: confirm_new_user_path do |f|%>
     <%= render 'shared/error_messages', model: f.object %>
@@ -25,5 +25,6 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation, maxlength: 128, class: 'form-control' %>
     </div>
-    <%= f.submit '登録', class: 'btn btn-primary'%>
+    <%= link_to "戻る", login_path , class: 'btn btn-secondary mr-3' %>
+    <%= f.submit '登録', class: 'btn btn-primary' %>
 <% end %>
