@@ -11,21 +11,24 @@
         <%= f.label :email %>
         <%= f.email_field :email, class: 'form-control' %>
     </div>
-    <button type="button" name="氏名の編集" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off" id="name_menu">氏名の編集</button>
-    <div class="form-group" id="name_form">
-        <%= f.label :name %>
-        <%= f.text_field :name, class: 'form-control' %>
-    </div>
-
-    <button type="button" name="パスワードの変更" class="btn btn-outline-warning" data-toggle="button" aria-pressed="false" autocomplete="off"  id="password_menu">パスワードの変更</button>
-    <div id="password_form">
-        <div class="form-group">
-            <%= f.label :password %> 
-            <%= f.password_field :password, class: 'form-control' %>
+    <div class="toggle_form">
+        <button type="button" name="氏名の編集" class="btn btn-outline-warning mb-3" data-toggle="button" aria-pressed="false" autocomplete="off" id="name_menu">氏名の編集</button>
+        <div class="form-group toggle_target">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: 'form-control' %>
         </div>
-        <div class="form-group">
-            <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation, class: 'form-control' %>
+    </div>
+    <div class="toggle_form">
+        <button type="button" name="パスワードの変更" class="btn btn-outline-warning mb-3" data-toggle="button" aria-pressed="false" autocomplete="off">パスワードの変更</button>
+        <div class=toggle_target>
+            <div class="form-group">
+                <%= f.label :password %> 
+                <%= f.password_field :password, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+                <%= f.label :password_confirmation %>
+                <%= f.password_field :password_confirmation, class: 'form-control' %>
+            </div>
         </div>
     </div>
     <%= f.submit '更新', class: 'btn btn-primary'%>
