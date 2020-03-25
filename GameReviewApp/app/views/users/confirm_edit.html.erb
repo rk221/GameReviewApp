@@ -2,11 +2,39 @@
 <h1 class="mb-5"> 更新内容の確認 </h1>
 
 <%= form_with model: @user, local: true do |f| %>
+    <table class="table table-hover">
+        <thead>
+        </thead>
+        </tbody>
+        <tr>
+            <th scope="row"><%= User.human_attribute_name(:nickname) %></th>
+            <td><%= @user.nickname %></td>
+        </tr>
+        <tr>
+            <th scope="row"><%= User.human_attribute_name(:email) %></th>
+            <td><%= @user.email %></td>
+        </tr>
+        <tr>
+            <th scope="row"><%= User.human_attribute_name(:name) %></th>
+            <td><%= @user.name %></td>
+        </tr>
+        <tr>
+            <th scope="row"><%= User.human_attribute_name(:password) %></th>
+            <td>非表示</td>
+        </tr>
+        <tr>
+            <th scope="row"><%= User.human_attribute_name(:password_confirmation) %></th>
+            <td>非表示</td>
+        </tr>
+        </tbody>
+    </table>
+
+
     <%= f.hidden_field :name, maxlength: 30 %>
     <%= f.hidden_field :nickname, maxlength: 30 %>
     <%= f.hidden_field :email, maxlength: 254 %>
     <%= f.hidden_field :password, maxlength: 128 %>
     <%= f.hidden_field :password_confirmation, maxlength: 128 %>
-    <%= f.submit '戻る', name: 'back' %>
-    <%= f.submit '更新', id: "confirm" %>
+    <%= f.submit '戻る', class: 'btn btn-secondary mr-3', name: 'back' %>
+    <%= f.submit '更新', class: 'btn btn-primary', id: "confirm" %>
 <% end %>
