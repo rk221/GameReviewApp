@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
     def destroy
         review = Review.find(params[:id])
         review.destroy 
-        redirect_back(fallback_location: root_path)
+        redirect_back(fallback_location: root_path, notice: 'レビューを削除しました') 
     end
     
     private
