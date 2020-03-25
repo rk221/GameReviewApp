@@ -1,5 +1,5 @@
 <% breadcrumb :users %>
-<h1> ユーザー一覧画面 </h1>
+<h1 class="mb-5"> ユーザー一覧画面 </h1>
 <% @users.each do |user| %>
     <%= link_to user.name, user_path(user) %><br>
 <% end %>

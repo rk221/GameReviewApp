@@ -11,14 +11,30 @@
 
 
   <body>
-    <nav>
+    <nav class='app-title navbar navbar-expand-md navbar-light bg-light'>
       <%= render 'shared/menu_header' if current_user%>
     </nav>
 
-    <main>
-      <%= breadcrumbs pretext: "パンくずリスト: ", separator: " &rsaquo; " %>
-      <%= flash[:notice] if flash[:notice] %>
-      <%= flash[:alert] if flash[:alert] %>
+    <main class='container'>
+      <% breadcrumbs.tap do |links| %>
+        <% if links.any? %>
+          <div class='container'>
+            <ol class='breadcrumb'>
+              <% links.each do |link| %>
+                <li class='breadcrumb-item<%= ' active' if link.current? %>'>
+                  <%= link_to_unless(link.current?, link.text, link.url) %>
+                </li>
+              <% end %>
+            </ol>
+          </div>
+        <% end %>
+      <% end %>
+      <% if flash[:notice] %>
+        <div class="alert alert-success"><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-warnning"><%= flash[:alert] %></div>
+      <% end %>
       <%= yield %>
     </main>
   </body>

@@ -1,13 +1,11 @@
 <% breadcrumb :genre %>
-<h1>ジャンル詳細画面</h1>
+<h1 class="mb-5">ジャンル詳細画面</h1>
 
-<h3> ジャンル情報 </h3>
-<%=  "#{Genre.human_attribute_name(:name)} #{@genre.name}" %>
-<br>
-<%=  "#{Genre.human_attribute_name(:description)} #{@genre.description}" %>
-<br>
+<h3 class="mb-4"> ジャンル情報 </h3>
+<p><b><%=  "#{Genre.human_attribute_name(:name)}" %></b> <%= "#{@genre.name}" %></p>
+
+<p><b><%= "#{Genre.human_attribute_name(:description)}" %></b> <%= "#{@genre.description}" %>
 
 <h3> 投稿レビュー一覧 </h3>
 
 <%= render partial: "shared/reviews_index", locals: { reviews: Review.where(game_id: @genre.games)} %>
-<br>

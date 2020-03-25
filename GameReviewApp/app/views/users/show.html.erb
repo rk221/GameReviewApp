@@ -1,12 +1,11 @@
 <% breadcrumb :user %>
-<h1>ユーザー詳細画面</h1>
+<h1 class="mb-5">ユーザー詳細画面</h1>
 
-<h3> ユーザー情報 </h3>
-<%="#{User.human_attribute_name(:nickname)} #{@user.nickname}" %>
-<br>
+<h3 class="mb-4"> ユーザー情報 </h3>
+<p><b><%="#{User.human_attribute_name(:nickname)}：" %> </b> <%="#{@user.nickname}"%></p>
 
-ユーザー情報 <%= link_to '編集', edit_user_path(@user) %> <%= link_to '削除', user_path(@user), method: :delete %>
-<br>
+<p><b>ユーザー情報：</b> <%= link_to '編集', edit_user_path(@user), class: "btn btn-secondary"%> <%= link_to '削除', user_path(@user), method: :delete, class: "btn btn-danger" %></p>
+
 
 <h3> 投稿レビュー一覧 </h3>
 

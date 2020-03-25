@@ -1,18 +1,21 @@
 <% breadcrumb :login %>
-<h1> ログイン画面 </h1>
+<h1 class="mb-5"> ログイン画面 </h1>
 
 <%= form_with(model: [@loginSession], url: login_path, local: true) do |f| %>
     <%= render 'shared/error_messages', model: f.object %>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-    <br>
-    <%= f.label :password %>
-    <%= f.password_field :password%>
-    <br>
-    <%= f.label :remember_me %>
-    <%= f.check_box :remember_me %>
-    <br>
-    <%= f.submit 'ログイン' %>
+    <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control'%>
+    </div>
+    <div class="form-check">
+        <%= f.check_box :remember_me, class: 'form-check-input' %>
+        <%= f.label :remember_me, class: 'form-check-label' %>
+    </div>
+    <%= f.submit 'ログイン', class: 'btn btn-primary mt-3' %>
 <% end %>
 <br>
-<%= link_to "ユーザー登録", new_user_path %>
+<%= link_to "ユーザー登録", new_user_path, class: 'btn btn-secondary' %>

@@ -1,49 +1,89 @@
 <% reviews = reviews.order(created_at: "DESC") %>
 <% reviews.each do |review| %>
 
-    <%= "#{Review.human_attribute_name(:game_id)} #{review.game.name}" %><br>
-    <%= "#{Review.human_attribute_name(:title)} #{review.title}" %><br>
-    <%= "#{Review.human_attribute_name(:user_id)} #{User.find(review.user_id).nickname} " %><br>
-    <%= "投稿 #{review.convert_elapsed_time}" %><br>
-    <%= "#{Review.human_attribute_name(:total_hours_played)} #{review.total_play_time}" %><br>
-    <br>
-    グラフィック
-    <div class="star" data-score="<%= review.graphic_rate %>"></div>
-    サウンド
-    <div class="star" data-score="<%= review.sound_rate %>"></div>
-    運営
-    <div class="star" data-score="<%= review.management_rate %>"></div>
-    ストーリー
-    <div class="star" data-score="<%= review.story_rate %>"></div>
-    ボリューム
-    <div class="star" data-score="<%= review.volume_rate %>"></div>
-
+    <div class="mt-3 mb-3">
+        <table class="table table-hover table-bordered" style="table-layout:auto;">
+            <thead>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" style="width:25%"><%= "#{Review.human_attribute_name(:game_id)}" %></th>
+                    <td style="width:75%"><%= "#{review.game.name}" %></td>
+                </tr>
+                <tr>
+                    <th scope="row"><%= "#{Review.human_attribute_name(:title)}"%></th>
+                    <td><%= "#{review.title}" %></td>
+                </tr>
+                <tr>
+                    <th scope="row"><%= "#{Review.human_attribute_name(:user_id)}"%></td> 
+                    <td><%= "#{User.find(review.user_id).nickname}" %></td>
+                </tr>
+                <tr>
+                    <th scope="row">投稿</td>
+                    <td><%= "#{review.convert_elapsed_time}" %></td>
+                </tr>
+                <tr>
+                    <th scope="row"><%= "#{Review.human_attribute_name(:total_hours_played)}"%></td>
+                    <td><%= "#{review.total_play_time}" %></td>
+                </tr>
+                <tr>
+                    <th scope="row">グラフィック</td>
+                    <td><div class="show_star_raty" data-score="<%= review.graphic_rate %>"></div></td>
+                </tr>
+                <tr>
+                    <th scope="row">サウンド</td>
+                    <td><div class="show_star_raty" data-score="<%= review.sound_rate %>"></div></td>
+                </tr>
+                <tr>
+                    <th scope="row">運営</td>
+                    <td><div class="show_star_raty" data-score="<%= review.management_rate %>"></div></td>
+                </tr>
+                <tr>
+                    <th scope="row">ストーリー</td>
+                    <td><div class="show_star_raty" data-score="<%= review.story_rate %>"></div></td>
+                </tr>
+                <tr>
+                    <th scope="row">ボリューム</td>
+                    <td><div class="show_star_raty" data-score="<%= review.volume_rate %>"></div></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><%= "#{Review.human_attribute_name(:comment)}" %></td> 
+                </tr>
+                <tr>
+                    <td colspan="2" ><%= "#{review.comment}" %></td>
+                </tr>
+                <% if review.image.present? %>
+                <tr>
+                    <td colspan="2"><%= image_tag(review.image_url, class: 'img-fluid') %></td>
+                </tr>
+                <% end %>
+                <tr>
+                    <td colspan="2">
+                        <span id="likes_buttons_<%= review.id %>">
+                            <%= render partial: "likes_for_user_reviews/like", locals: { review: review} %>
+                        </span>
+                        <% if review.user_id == current_user.id %>
+                        <%= link_to "削除", review, method: :delete, data: { confirm: "削除します。よろしいですか？"}, class: 'btn btn-danger mb-md-2' %>
+                        <% else %>
+                        <% end %>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <script>
-        $(function() {
-            $('.star').raty({
-                size: 36,
-                starOff:  '<%= asset_path('star-off.png') %>',
-                starOn : '<%= asset_path('star-on.png') %>',
-                readOnly: true,
-                score: function(){
-                    return $(this).attr('data-score');
-                }
-            });
-        });
-    </script>  
-
-    <% if review.user_id == current_user.id %>
-    <%= link_to "削除", review, method: :delete, data: { confirm: "削除します。よろしいですか？"} %>
-    <% else %>
-    <% end %>
-    <br>
-
-    <%= "#{Review.human_attribute_name(:comment)} #{review.comment}" %><br>
-    <%= image_tag(review.image_url) if review.image.present? %>
-
-    <div id="likes_buttons_<%= review.id %>">
-        <%= render partial: "likes_for_user_reviews/like", locals: { review: review} %>
-    </div>
-    <br>
 <% end %>
+
+
+<script>
+$(function() {
+    $('.show_star_raty').raty({
+        size: 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        readOnly: true,
+        score: function(){
+            return $(this).attr('data-score');
+        }
+    });
+});
+</script>  

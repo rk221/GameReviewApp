@@ -1,3 +1,4 @@
+<span style="font-size: 1.3rem; padding: 0 20px 0 0;">
     <% if current_user.likes_for_user_reviews.find_by(review_id: review.id) %>
         <%= link_to unlike_path(review.id), method: :delete, remote: true do %>
             ♥ <%= LikesForUserReview.where(review_id: review.id).count %>
@@ -7,3 +8,4 @@
             ♡ <%= LikesForUserReview.where(review_id: review.id).count %>
         <% end %>
     <% end %>
+</span>
