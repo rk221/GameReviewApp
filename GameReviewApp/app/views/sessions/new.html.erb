@@ -1,5 +1,5 @@
 <% breadcrumb :login %>
-<h1> ログイン画面 </h1>
+<h1 class="mb-5"> ログイン画面 </h1>
 
 <%= form_with(model: [@loginSession], url: login_path, local: true) do |f| %>
     <%= render 'shared/error_messages', model: f.object %>

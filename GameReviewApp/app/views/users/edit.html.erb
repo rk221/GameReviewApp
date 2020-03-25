@@ -1,5 +1,5 @@
 <% breadcrumb :edit_user %>
-<h1>ユーザー編集画面</h1>
+<h1 class="mb-5">ユーザー編集画面</h1>
 
 <%= form_with model: @user, local: true, url: confirm_user_path do |f|%>
     <%= render 'shared/error_messages', model: f.object %>
