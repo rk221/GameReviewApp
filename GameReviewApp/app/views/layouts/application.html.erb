@@ -16,7 +16,19 @@
     </nav>
 
     <main class='container'>
-      <%= breadcrumbs pretext: "パンくずリスト: ", separator: " &rsaquo; " %>
+      <% breadcrumbs.tap do |links| %>
+        <% if links.any? %>
+          <div class='container'>
+            <ol class='breadcrumb'>
+              <% links.each do |link| %>
+                <li class='breadcrumb-item<%= ' active' if link.current? %>'>
+                  <%= link_to_unless(link.current?, link.text, link.url) %>
+                </li>
+              <% end %>
+            </ol>
+          </div>
+        <% end %>
+      <% end %>
       <%= flash[:notice] if flash[:notice] %>
       <%= flash[:alert] if flash[:alert] %>
       <%= yield %>
