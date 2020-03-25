@@ -1,9 +1,8 @@
 <% breadcrumb :game %>
 <h1 class="mb-5"> ゲーム詳細画面 </h1>
 
-<%= "#{Game.human_attribute_name(:name)} #{@game.name}" %>
-<br>
+<h3 class="mb-4">
+<b><%= "#{Game.human_attribute_name(:name)}：" %></b><%= "#{@game.name}" %>
+</h3>
 
 <%= render partial: "shared/reviews_index", locals: { reviews: Review.where(game_id: @game.id)} %>
-
-<br>
