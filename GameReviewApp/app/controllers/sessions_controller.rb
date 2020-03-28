@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     if @loginSession.save && user&.authenticate(session_params[:password])
       log_in user
       remember user if remember_me_params?
-      redirect_to user_path(user.id), notice: 'ログインしました'
+      redirect_to home_path, notice: 'ログインしました'
     else
       render :new
     end

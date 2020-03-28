@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/home', to: 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :reviews
   resources :games
@@ -17,5 +18,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   
 
-  root to: 'reviews#index'
+  root to: 'home#index'
 end

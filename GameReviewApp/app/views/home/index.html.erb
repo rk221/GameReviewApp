@@ -1,0 +1,22 @@
+<% breadcrumb :root %>
+<h1 class="mb-5">Home</h1>
+
+<div class="row">
+    <div class="col-md-4 mb-4 mr-4">
+        <h4 class="mb-4"> トレンドゲームＴＯＰ３ </h4>
+        <% rank = 1 %>
+        <ul>
+        <% @topgames.each do |game| %>
+            <li class="<%= "rank_icon" %>"><%= link_to game.name, game_path(game), class: "rank_#{rank}" %></li>
+            <% rank += 1 %>
+        <% end %>
+        </ul>
+
+        <h4 class="mt-8 mb-4"> 新着レビュー </h4>
+        <%= render partial: "shared/reviews_index", locals: { reviews: @reviews} %>
+    </div>
+    <div class="col-md-7">
+        <h3 class="mb-4"> 人気レビュー </h3>
+        <%= render partial: "shared/reviews_index", locals: { reviews: @topreviews} %>
+    </div>
+</div>
