@@ -1,0 +1,29 @@
+$(document).on('turbolinks:load', function() {
+    $("#review_order").change(function(){
+        //セレクトボックスの内容を取得
+        var orderVal = `&order_val=${$('option:selected').val()}`
+        console.log(orderVal)
+        //現在の表示ページ
+        var current_html = window.location.href;
+        //ソート機能の重複防止
+        if (location['href'].match(/&order_val=*.+/) != null){ //ソートのパラメータが存在
+            var remove = location['href'].match(/&order_val=*.+/)[0];
+            var current_html = current_html.replace(remove, '');//消去
+        };
+        //パラメータが存在しない場合を防止
+        if (location['href'].match("\\?") == null){
+            var orderVal = `?${orderVal}`;
+        };
+        //ページ遷移
+        window.location.href = current_html + orderVal;
+    });
+    
+    $(function () {
+        //パラメータが存在しない場合を防止
+        if (location['href'].match(/&order_val=*.+/) != null){ //ソートのパラメータが存在
+            var orderVal = location['href'].match(/&order_val=*.+/)[0];
+            $('#review_order').val(decodeURI(orderVal.replace('&order_val=',''))); 
+        };
+
+    });
+});
