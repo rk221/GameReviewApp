@@ -39,5 +39,22 @@ class Review < ApplicationRecord
         end
     end
 
-    
+    scope :selectDateHash, -> {
+        {'全期間' => 'all', '１日以内' => 'day','１週間以内' => 'week', '１か月以内' => 'month', '半年以内' => 'half_year'}
+    }
+
+    def self.selectDateSql(date_val)
+        case date_val
+        when 'day' then
+            return 1.day.ago
+        when 'week' then
+            return 1.week.ago
+        when 'month' then
+            return 1.month.ago
+        when 'half_year' then
+            return 6.month.ago
+        else
+            return ""
+        end
+    end
 end
