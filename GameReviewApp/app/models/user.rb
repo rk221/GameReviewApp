@@ -1,7 +1,7 @@
 class User < ApplicationRecord
     has_secure_password
-    has_many :reviews
-    has_many :likes_for_user_reviews
+    has_many :reviews, dependent: :destroy
+    has_many :likes_for_user_reviews, dependent: :destroy
 
     validates :name, presence: true, length: {maximum: 30}, allow_nil: true
     validates :nickname, presence: true, length: {minimum:4, maximum: 30}
