@@ -160,12 +160,13 @@ describe 'ユーザー管理機能', type: :system do
             click_button 'ログイン'                             #ログインするボタンを押す
         end
     
-        it 'ユーザー詳細画面へ遷移している' do
-            expect(page).to have_content 'ユーザー詳細画面'
+        it 'トップページ画面へ遷移している' do
+            expect(page).to have_content 'Home'
         end
 
         context 'ユーザーを削除する' do
             before do
+                click_link 'マイページ'
                 click_link '削除'
             end
 
@@ -203,10 +204,11 @@ describe 'ユーザー管理機能', type: :system do
             fill_in "Eメール", with: login_user.email           #Eメールを入力する
             fill_in 'パスワード', with: login_user.password     #パスワードを入力する
             click_button 'ログイン'                             #ログインするボタンを押す
+            click_link 'マイページ'
         end
     
-        it 'ユーザー詳細画面へ遷移している' do
-            expect(page).to have_content 'ユーザー詳細画面'
+        it 'マイページへ遷移している' do
+            expect(page).to have_content 'ユーザー詳細'
         end
 
         it 'レビューが投稿されている' do
@@ -232,12 +234,13 @@ describe 'ユーザー管理機能', type: :system do
             click_button 'ログイン'                             #ログインするボタンを押す
         end
     
-        it 'ユーザー詳細画面へ遷移している' do
-            expect(page).to have_content 'ユーザー詳細画面'
+        it 'トップページへ遷移している' do
+            expect(page).to have_content 'Home'
         end
 
         context 'ユーザー編集' do
             before do
+                click_link 'マイページ'
                 click_link '編集'
             end
 

@@ -27,8 +27,8 @@ describe 'セッション管理機能', type: :system do
 
             it_behaves_like 'ログアウトボタンが表示されている'
 
-            it 'ユーザー詳細画面へ遷移している' do
-                expect(page).to have_content 'ユーザー詳細画面'
+            it 'トップページへ遷移している' do
+                expect(page).to have_content 'Home'
             end
         end
 

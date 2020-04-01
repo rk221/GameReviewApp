@@ -1,0 +1,63 @@
+$(document).on('turbolinks:load', function() {
+    //レビューをソートするセレクトボックス
+    $("#review_order").change(function(){
+        //セレクトボックスの内容を取得
+        var orderVal = `${$('#review_order option:selected').val()}`
+        //現在の表示ページ
+        var current_html = window.location.href;
+
+        //パラメータが存在しない場合を防止
+        if (location['href'].match("\\?") == null){
+            var current_html = current_html + '?';
+        };
+
+        //ソート機能の重複防止
+        if (getParam('order_val') != null){ //ソートのパラメータが存在
+            var current_html = current_html.replace(getParam('order_val'), orderVal);//置き換え
+        }//存在しない場合
+        else{
+            var current_html = current_html + `&order_val=${orderVal}`;
+        };
+
+        //ページ遷移
+        window.location.href = current_html;
+    });
+ 
+    //レビューの期間を絞るセレクトボックス
+    $("#review_date").change(function(){
+        //セレクトボックスの内容を取得
+        var dateVal = `${$('#review_date option:selected').val()}`
+        //現在の表示ページ
+        var current_html = window.location.href;
+
+        //パラメータが存在しない場合を防止
+        if (location['href'].match("\\?") == null){
+            var current_html = current_html + '?';
+        };
+        //ソート機能の重複防止
+        if (getParam('date_val') != null){ //ソートのパラメータが存在
+            var current_html = current_html.replace(getParam('date_val'), dateVal);//パラメータを置き換え
+        }
+        else
+        {
+            var current_html = current_html + `&date_val=${dateVal}`;
+        };
+
+        //ページ遷移
+        window.location.href = current_html;
+    });
+
+    $(function () {
+        //パラメータが存在しない場合を防止
+        if (getParam('order_val') != null){ //ソートのパラメータが存在
+            //選択状態変更
+            $('#review_order').val(getParam('order_val')); 
+        };
+
+        //パラメータが存在しない場合を防止
+        if (getParam('date_val') != null){ //ソートのパラメータが存在
+            //選択状態を変更
+            $('#review_date').val(getParam('date_val')); 
+        };
+    });
+});

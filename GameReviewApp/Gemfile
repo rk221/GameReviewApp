@@ -79,3 +79,6 @@ gem 'gretel'
 
 #bootstrap
 gem 'bootstrap'
+
+#search
+gem 'ransack'
