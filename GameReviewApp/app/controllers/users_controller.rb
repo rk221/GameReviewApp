@@ -21,6 +21,7 @@ class UsersController < ApplicationController
         end
 
         if @user.save
+            UserMailer.creation_email(@user).deliver_now #メール送信
             redirect_to login_path, notice: 'ユーザーを登録しました。'
         else
             render :new     #登録に失敗した
