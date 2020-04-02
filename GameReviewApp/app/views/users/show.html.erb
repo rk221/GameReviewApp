@@ -4,10 +4,9 @@
 <h3 class="mb-4"> ユーザー情報 </h3>
 <p><b><%="#{User.human_attribute_name(:nickname)}：" %> </b> <%="#{@user.nickname}"%></p>
 
-<p><b>ユーザー情報：</b> <%= link_to '編集', edit_user_path(@user), class: "btn btn-secondary"%> <%= link_to '削除', user_path(@user), method: :delete, class: "btn btn-danger" %></p>
+<p><b>ユーザー情報：</b> <%= link_to '編集', edit_user_path(@user), class: "btn btn-secondary"%> <%= link_to '削除', confirm_user_path(@user), class: "btn btn-danger" %></p>
 
 
 <h3> 投稿レビュー一覧 </h3>
 
 <%= render partial: "shared/reviews_index", locals: { reviews: @user.reviews} %>
-<br>

@@ -1,0 +1,5 @@
+<% breadcrumb :confirm_destroy_user %>
+<h1 class="mb-5"> アカウント削除の確認 </h1>
+
+<%= link_to '戻る', :back, class: 'btn btn-secondary mr-3' %>
+<%= link_to '削除', user_path(@user), method: :delete, class: 'btn btn-primary', id: "confirm" %>
