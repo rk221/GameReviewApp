@@ -168,6 +168,7 @@ describe 'ユーザー管理機能', type: :system do
             before do
                 click_link 'マイページ'
                 click_link '削除'
+                click_link '削除'   #確認画面用
             end
 
             it 'ログイン画面へ遷移している' do
