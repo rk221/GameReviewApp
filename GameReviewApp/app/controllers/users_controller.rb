@@ -75,6 +75,12 @@ class UsersController < ApplicationController
         render :edit unless @user.valid?
     end
 
+    def confirm_destroy
+        @user = User.find(params[:id])
+        return if current_user != @user
+        render action: :confirm_destroy
+    end
+
     private
     
     def user_params

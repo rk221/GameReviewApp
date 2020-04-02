@@ -25,9 +25,14 @@ crumb :edit_user do
   parent :user
 end
 
-crumb :confirm_user do
+crumb :confirm_edit_user do
   link "ユーザー編集確認", confirm_user_path
   parent :edit_user
+end
+
+crumb :confirm_destroy_user do
+  link "ユーザー削除確認", confirm_user_path
+  parent :user
 end
 
 crumb :reviews do
