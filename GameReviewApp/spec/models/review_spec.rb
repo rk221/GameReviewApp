@@ -38,13 +38,13 @@ RSpec.describe Review, type: :model do
         expect(review.errors[:comment]).to include("は200文字以内で入力してください")
     end
 
-    it "評価が1未満の場合、有効である" do
+    it "評価が1未満の場合、無効である" do
         review = FactoryBot.build(:review, user_id: user.id, game_id: game.id, graphic_rate: 0)
         review.valid?
         expect(review.errors[:graphic_rate]).to include("は1以上の値にしてください")
     end
 
-    it "評価が6以上の場合、有効である" do
+    it "評価が6以上の場合、無効である" do
         review = FactoryBot.build(:review, user_id: user.id, game_id: game.id, graphic_rate: 6)
         review.valid?
         expect(review.errors[:graphic_rate]).to include("は5以下の値にしてください")
