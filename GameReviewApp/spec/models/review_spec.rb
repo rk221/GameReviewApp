@@ -49,4 +49,16 @@ RSpec.describe Review, type: :model do
         review.valid?
         expect(review.errors[:graphic_rate]).to include("は5以下の値にしてください")
     end
+
+    it "ユーザーIDが無い場合、無効である" do
+        review = FactoryBot.build(:review, user_id: nil, game_id: game.id)
+        review.valid?
+        expect(review.errors[:user]).to include("を入力してください")
+    end
+
+    it "ゲームIDが無い場合、無効である" do
+        review = FactoryBot.build(:review, user_id: user.id, game_id: nil)
+        review.valid?
+        expect(review.errors[:game]).to include("を入力してください")
+    end
 end
