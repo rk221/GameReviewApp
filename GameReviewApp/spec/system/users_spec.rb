@@ -256,8 +256,8 @@ describe 'ユーザー管理機能', type: :system do
                     fill_in "Eメール", with: update_user.email
 
 
-                    page.all(".toggle_form")[0].click
-                    page.all(".toggle_form")[1].click
+                    page.all(".toggle_form button")[0].click
+                    page.all(".toggle_form button")[1].click
                     fill_in "氏名", with: update_user.name 
                     fill_in "パスワード", with: update_user.password
                     fill_in "パスワード（確認）", with: update_user.password_confirmation

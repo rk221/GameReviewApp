@@ -3,12 +3,12 @@ class User < ApplicationRecord
     has_many :reviews, dependent: :destroy
     has_many :likes_for_user_reviews, dependent: :destroy
 
-    validates :name, presence: true, length: {maximum: 30}, allow_nil: true
+    validates :name, presence: true, length: {maximum: 30}
     validates :nickname, presence: true, length: {minimum:4, maximum: 30}
 
     #email validates
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-    validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }, length: {maximum: 254}, allow_nil: true
+    validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }, length: {maximum: 254}
     validates :password, presence: true, length: {minimum: 8, maximum:128}, allow_nil: true
 
     attr_accessor :remember_token
