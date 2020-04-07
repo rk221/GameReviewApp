@@ -36,24 +36,49 @@
                     <td><%= "#{review.total_play_time}" %></td>
                 </tr>
                 <tr>
-                    <th scope="row">グラフィック</td>
-                    <td><div class="show_star_raty" data-score="<%= review.graphic_rate %>"></div></td>
-                </tr>
-                <tr>
-                    <th scope="row">サウンド</td>
-                    <td><div class="show_star_raty" data-score="<%= review.sound_rate %>"></div></td>
-                </tr>
-                <tr>
-                    <th scope="row">運営</td>
-                    <td><div class="show_star_raty" data-score="<%= review.management_rate %>"></div></td>
-                </tr>
-                <tr>
-                    <th scope="row">ストーリー</td>
-                    <td><div class="show_star_raty" data-score="<%= review.story_rate %>"></div></td>
-                </tr>
-                <tr>
-                    <th scope="row">ボリューム</td>
-                    <td><div class="show_star_raty" data-score="<%= review.volume_rate %>"></div></td>
+                    <td colspan="2"> <canvas id="starChart<%=review.id%>"></canvas>
+                    
+                        <script>
+                            //レーダーチャートを描画する
+                            $(function () {
+                                var ctx = document.getElementById("starChart<%=review.id%>");
+                                var starChart = new Chart(ctx, {
+                                    type: 'radar',  //レーダーチャート追加
+                                    data: {
+                                        labels: ["グラフィック", "サウンド", "運営", "ストーリー", "ボリューム"],
+                                        datasets: [{
+                                            label: '評価',
+                                            data: [ <%= review.graphic_rate %>,
+                                                    <%= review.sound_rate %>,
+                                                    <%= review.management_rate %>,
+                                                    <%= review.story_rate %>,
+                                                    <%= review.volume_rate %>],
+                                            backgroundColor: 'RGBA(115,255,25, 0.5)',
+                                            borderColor: 'RGBA(115,255,25, 1)',
+                                            borderWidth: 1,
+                                            pointBackgroundColor: 'RGB(46,106,177)'
+                                        }]
+                                    },
+                                    options: {
+                                        title: {
+                                            display: true,
+                                            text: '評価グラフ'
+                                        },
+                                        scale:{
+                                            ticks:{
+                                                suggestedMax: 5,
+                                                suggestedMin: 0,
+                                                stepSize: 1,
+                                                callback: function(value, index, values){
+                                                    return  value +  '点'
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
+                            });
+                        </script>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2"><%= "#{Review.human_attribute_name(:comment)}" %></td> 
