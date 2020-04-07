@@ -12,7 +12,17 @@
 
   <body>
     <nav class='app-title navbar navbar-expand-md navbar-light bg-light'>
-      <%= render 'shared/menu_header' if current_user%>
+      <button class="navbar-toggler" type="button"
+        data-toggle="collapse"
+        data-target="#navmenu1"
+        aria-controls="navmenu1"
+        aria-expanded="false"
+        aria-lable="Toggle navigation">
+        <span class="Toggle navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navmenu1">
+        <%= render 'shared/menu_header' if current_user%>
+      </div>
     </nav>
 
     <main class='container'>
