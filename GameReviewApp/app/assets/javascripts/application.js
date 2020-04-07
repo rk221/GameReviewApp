@@ -16,6 +16,7 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+//= require Chart.min
 
 function getParam(name, url) {
     if (!url) url = window.location.href;

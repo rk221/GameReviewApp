@@ -82,3 +82,5 @@ gem 'bootstrap'
 
 #search
 gem 'ransack'
+
+gem 'chart-js-rails'
